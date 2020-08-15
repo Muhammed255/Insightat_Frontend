@@ -1,0 +1,384 @@
+<div style="min-height: 100vh; background: #fafafa;" *ngIf="!isMine">
+  <ct-navigation-bar type="dashboard"></ct-navigation-bar>
+
+  <div *ngIf="!user">The profile is not exist.</div>
+  <div class="profile" *ngIf="user">
+    <div class="profile__image">
+      <img *ngIf="user.backImg !== null && user.backImg !== ''" [src]="user.backImg" />
+      <div
+        *ngIf="user.backImg == null || user.backImg == '' || user.backImg == undefined"
+        class="profile__image__empty"
+      ></div>
+      <div class="profile__logo-view">
+        <img
+          [src]="user.accountImg"
+          *ngIf="user.accountImg !== null && user.accountImg !== undefined"
+        />
+      </div>
+    </div>
+
+    <div class="profile__wrapper row">
+      <div class="profile__summary">
+        <h1 class="profile__summary__website text-center">
+          {{ user.pageName }}
+        </h1>
+        <p class="profile__summary__handle text-center">@{{ user.handle }}</p>
+        <p class="profile__summary__description">
+          {{ user.description }}
+        </p>
+        <div class="profile__summary__links">
+          <a class="profile__summary__link" (click)="navigateTo(user.website)">
+            <i class="fa fa-building"></i>
+          </a>
+          <div class="profile__summary__link" (click)="navigateTo(user.facebook)">
+            <i class="fa fa-facebook-square"></i>
+          </div>
+          <div class="profile__summary__link" (click)="navigateTo(user.twitter)">
+            <i class="fa fa-twitter"></i>
+          </div>
+          <div class="profile__summary__link" (click)="navigateTo(user.linkedIn)">
+            <i class="fa fa-linkedin"></i>
+          </div>
+          <div class="profile__summary__link" (click)="navigateTo(user.googlePlus)">
+            <i class="fa fa-google-plus"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile__content">
+        <p>{{ user.pageName }} - Form</p>
+        <div
+          *ngIf="project"
+          [ngStyle]="{ backgroundColor: project.backgroundColor }"
+          class="d-flex justify-content-center align-items-center preview"
+        >
+          <survey
+            [json]="project.json"
+            [mainColor]="project.mainColor"
+            [mainTextColor]="project.mainTextColor"
+            [questionColor]="project.questionColor"
+            [answerColor]="project.answerColor"
+            [pageColor]="project.pageColor"
+            [progressBar]="project.progressBAr"
+            class="d-flex justify-content-center align-items-center"
+            (submitSurvey)="sendData($event)"
+          ></survey>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div style="min-height: 100vh; background: #fafafa;" *ngIf="isMine">
+  <nav class="navbar navbar-expand-lg navbar-light navbar-border">
+    <a class="navbar-brand" routerLink="/">Insightat</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="isCollapsed = !isCollapsed"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-survey__right d-flex">
+      <div class="navbar-survey__search">
+        <span class="navbar-survey__search__border"
+          ><i class="fa fa-search"></i
+        ></span>
+        <input
+          type="text"
+          placeholder="Search companies"
+          [(ngModel)]="searchCompany"
+          (keyup.enter)="searchProfiles()"
+        />
+      </div>
+
+      <div
+        class="d-flex align-items-center navbar-survey__menu-dashboard"
+        (click)="dropdownVisible = !dropdownVisible"
+      >
+        <div
+          class="navbar-survey__dashboard d-flex justify-content-center align-items-center"
+        >
+          <span>{{ _localStorageService.getUserFirstName()[0] }} </span>
+        </div>
+        <i class="fa fa-caret-down"></i>
+
+        <ul class="navbar-survey__dropdown" *ngIf="dropdownVisible">
+          <li routerLink="/account">My Account</li>
+          <li routerLink="/profile">My Profile</li>
+          <li>Contacts</li>
+          <li routerLink="/contact-us">Help</li>
+          <li class="divider" (click)="logOut()">Log out</li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="profile" *ngIf="!profileEdit">
+    <div class="profile__image">
+      <img *ngIf="user.backImg !== null" [src]="user.backImg" />
+      <div *ngIf="user.backImg == null" class="profile__image__empty"></div>
+      <div class="profile__toggle" style="left: 70%">
+        <button
+          [ngStyle]="{
+            'background-color': '#fa7268',
+            'border-color': '#fa7268',
+            border: '1px solid #fa7268',
+            color: 'white'
+          }"
+        >
+          Favourites
+        </button>
+        <button
+          (click)="profileEdit = true"
+          class="profile__toggle__edit"
+          [ngStyle]="{
+            'background-color': 'white',
+            'border-color': 'white',
+            border: '1px solid white',
+            color: '#343434'
+          }"
+        >
+          <i class="fa fa-edit"></i>
+        </button>
+      </div>
+      <div class="profile__logo-view">
+        <img
+          [src]="user.accountImg"
+          *ngIf="user.accountImg !== null && user.accountImg !== undefined"
+        />
+      </div>
+    </div>
+
+    <div class="profile__wrapper row">
+      <div class="profile__summary">
+        <h1 class="profile__summary__website text-center">
+          {{ user.pageName }}
+        </h1>
+        <p class="profile__summary__handle text-center">@{{ user.handle }}</p>
+        <p class="profile__summary__description">
+          {{ user.description }}
+        </p>
+        <div class="profile__summary__links">
+          <a class="profile__summary__link" (click)="navigateTo(user.website)">
+            <i class="fa fa-building"></i>
+          </a>
+          <div
+            class="profile__summary__link"
+            (click)="navigateTo(user.facebook)"
+          >
+            <i class="fa fa-facebook-square"></i>
+          </div>
+          <div
+            class="profile__summary__link"
+            (click)="navigateTo(user.twitter)"
+          >
+            <i class="fa fa-twitter"></i>
+          </div>
+          <div
+            class="profile__summary__link"
+            (click)="navigateTo(user.linkedIn)"
+          >
+            <i class="fa fa-linkedin"></i>
+          </div>
+          <div
+            class="profile__summary__link"
+            (click)="navigateTo(user.googlePlus)"
+          >
+            <i class="fa fa-google-plus"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile__content">
+        <p *ngIf="project">{{ user.pageName }} - Form</p>
+        <div
+          *ngIf="project"
+          [ngStyle]="{ backgroundColor: project.backgroundColor }"
+          class="d-flex justify-content-center align-items-center preview"
+        >
+          <survey
+            [json]="project.json"
+            [mainColor]="project.mainColor"
+            [mainTextColor]="project.mainTextColor"
+            [questionColor]="project.questionColor"
+            [answerColor]="project.answerColor"
+            [pageColor]="project.pageColor"
+            [progressBar]="project.progressBar"
+            class="d-flex justify-content-center align-items-center"
+            (submitSurvey)="sendData($event)"
+          ></survey>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile" *ngIf="profileEdit">
+    <div class="profile__image">
+      <img *ngIf="user.backImg !== null" [src]="user.backImg" />
+      <div *ngIf="user.backImg == null" class="profile__image__empty" (click)="onUploadBack()">Click here to add background image</div>
+      <input
+        #backInput
+        hidden
+        type="file"
+        (change)="backChange($event)"
+        accept="image/gif, image/jpg, image/jpeg, image/png"
+      />
+
+      <div class="profile__toggle">
+        <button
+          (click)="onUploadFile()"
+          [ngStyle]="{
+            'background-color': 'white',
+            'border-color': 'white',
+            border: '1px solid white',
+            color: '#343434'
+          }"
+        >
+          Change Cover
+        </button>
+        <button
+          (click)="saveProfile()"
+          class="d-flex"
+          [ngStyle]="{
+            'background-color': '#fa7268',
+            'border-color': '#fa7268',
+            border: '1px solid #fa7268',
+            color: 'white'
+          }"
+        >
+          <i class="fa fa-edit"></i>
+          <span> Done Editing</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="profile__wrapper">
+      <div
+        class="profile__logo"
+        (mouseenter)="profileLogo = true"
+        (mouseleave)="profileLogo = false"
+      >
+        <div
+          *ngIf="profileLogo"
+          class="profile__logo-hover"
+          (click)="onUploadFile()"
+        >
+          <i class="fa fa-camera" style="color: #fff"></i>
+          <p>Change your profile photo</p>
+        </div>
+        <img
+          class="profile__logo-img"
+          [src]="user.accountImg"
+          *ngIf="user.accountImg !== null"
+        />
+        <input
+          #fileInput
+          hidden
+          type="file"
+          (change)="valueChange($event)"
+          accept="image/gif, image/jpg, image/jpeg, image/png"
+        />
+      </div>
+
+      <div class="profile__content">
+        <p>Edit Profile</p>
+        <div class="profile__content__form">
+          <p class="profile__content__form-title">General Information</p>
+          <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
+              <p class="profile__content__form-label">Page Name</p>
+              <input
+                class="profile__content__form-input"
+                type="text"
+                [(ngModel)]="user.pageName"
+              />
+            </div>
+
+            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
+              <p class="profile__content__form-label">Handle</p>
+              <input
+                class="profile__content__form-input"
+                type="text"
+                [(ngModel)]="user.handle"
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xl-12">
+              <p class="profile__content__form-label">Page Description</p>
+              <textarea
+                class="profile__content__form-textarea"
+                rows="8"
+                type="text"
+                [(ngModel)]="user.description"
+              ></textarea>
+            </div>
+          </div>
+
+          <p class="profile__content__form-title">Contact Information</p>
+          <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
+              <p class="profile__content__form-label">Website</p>
+              <input
+                class="profile__content__form-input"
+                type="text"
+                [(ngModel)]="user.website"
+              />
+            </div>
+
+            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
+              <p class="profile__content__form-label">Facebook</p>
+              <input
+                class="profile__content__form-input"
+                type="text"
+                [(ngModel)]="user.facebook"
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
+              <p class="profile__content__form-label">Twitter</p>
+              <input
+                class="profile__content__form-input"
+                type="text"
+                [(ngModel)]="user.twitter"
+              />
+            </div>
+
+            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
+              <p class="profile__content__form-label">LinkedIn</p>
+              <input
+                class="profile__content__form-input"
+                type="text"
+                [(ngModel)]="user.linkedIn"
+              />
+            </div>
+
+            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
+              <p class="profile__content__form-label">Google Plus</p>
+              <input
+                class="profile__content__form-input"
+                type="text"
+                [(ngModel)]="user.googlePlus"
+              />
+            </div>
+          </div>
+
+          <div class="profile__content__save row" (click)="saveProfile()">
+            <button>Save Changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,413 @@
+<div class="app d-flex">
+  <div
+    id="sidenav"
+    [ngStyle]="menuType == 'admin' ? { width: '17vw' } : { width: '50px' }"
+  >
+    <div class="wrapper">
+      <div class="menu">
+        <ul *ngIf="menuType == 'build'">
+          <li
+            (click)="activateMenu('build')"
+            [ngClass]="
+              activeMenu == 'build'
+                ? 'd-flex align-items-center justify-content-center active'
+                : 'd-flex align-items-center justify-content-center'
+            "
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+            >
+              <path
+                id="icon-grid"
+                d="M5.222,3H9.667a2.222,2.222,0,0,1,2.222,2.222V9.667a2.222,2.222,0,0,1-2.222,2.222H5.222A2.222,2.222,0,0,1,3,9.667V5.222A2.229,2.229,0,0,1,5.222,3Zm0,2.222V9.667H9.667V5.222ZM16.333,3h4.444A2.222,2.222,0,0,1,23,5.222V9.667a2.222,2.222,0,0,1-2.222,2.222H16.333a2.222,2.222,0,0,1-2.222-2.222V5.222A2.229,2.229,0,0,1,16.333,3Zm0,2.222V9.667h4.444V5.222ZM5.222,14.111H9.667a2.222,2.222,0,0,1,2.222,2.222v4.444A2.222,2.222,0,0,1,9.667,23H5.222A2.222,2.222,0,0,1,3,20.778V16.333A2.229,2.229,0,0,1,5.222,14.111Zm0,2.222v4.444H9.667V16.333Zm11.111-2.222h4.444A2.222,2.222,0,0,1,23,16.333v4.444A2.222,2.222,0,0,1,20.778,23H16.333a2.222,2.222,0,0,1-2.222-2.222V16.333A2.229,2.229,0,0,1,16.333,14.111Zm0,2.222v4.444h4.444V16.333Z"
+                transform="translate(-3 -3)"
+                [attr.fill]="activeMenu == 'build' ? '#3f82c7' : '#b4b4bf'"
+              />
+            </svg>
+          </li>
+          <li
+            (click)="activeMenu = 'option'"
+            [ngClass]="
+              activeMenu == 'option'
+                ? 'd-flex align-items-center justify-content-center active'
+                : 'd-flex align-items-center justify-content-center'
+            "
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18.855"
+              height="20"
+              viewBox="0 0 18.855 20"
+            >
+              <path
+                id="icon-cog"
+                d="M9,4.58V4a2.006,2.006,0,0,1,2-2h2a2,2,0,0,1,2,2v.58a8,8,0,0,1,1.92,1.11l.5-.29a2,2,0,0,1,2.74.73l1,1.74a2,2,0,0,1-.73,2.73l-.5.29a8.06,8.06,0,0,1,0,2.22l.5.3a2,2,0,0,1,.73,2.72l-1,1.74a2,2,0,0,1-2.73.73l-.5-.3A8,8,0,0,1,15,19.43V20a2,2,0,0,1-2,2H11a2,2,0,0,1-2-2v-.58a8,8,0,0,1-1.92-1.11l-.5.29a2,2,0,0,1-2.74-.73l-1-1.74a2,2,0,0,1,.73-2.73l.5-.29a8.06,8.06,0,0,1,0-2.22l-.5-.3a2,2,0,0,1-.73-2.72l1-1.74A2,2,0,0,1,6.57,5.4l.5.3A8,8,0,0,1,9,4.57ZM7.88,7.64l-.54.51L5.57,7.13l-1,1.74L6.33,9.88l-.17.73a6.02,6.02,0,0,0,0,2.78l.17.73L4.57,15.13l1,1.74,1.77-1.02.54.51a6,6,0,0,0,2.4,1.4l.72.2V20h2V17.96l.71-.2a6,6,0,0,0,2.41-1.4l.54-.51,1.77,1.02,1-1.74-1.76-1.01.17-.73a6.02,6.02,0,0,0,0-2.78l-.17-.73,1.76-1.01-1-1.74L16.66,8.15l-.54-.51a6,6,0,0,0-2.4-1.4L13,6.04V4H11V6.04l-.71.2a6,6,0,0,0-2.41,1.4ZM12,16a4,4,0,1,1,4-4A4,4,0,0,1,12,16Zm0-2a2,2,0,1,0-2-2A2,2,0,0,0,12,14Z"
+                transform="translate(-2.572 -2)"
+                [attr.fill]="activeMenu == 'option' ? '#3f82c7' : '#b4b4bf'"
+              />
+            </svg>
+          </li>
+        </ul>
+        <ul *ngIf="menuType == 'design'">
+          <li class="d-flex align-items-center justify-content-center active">
+            <img src="assets/image/icon-customize.svg" />
+          </li>
+        </ul>
+
+        <ul class="sidebar__admin" *ngIf="menuType == 'admin'">
+          <li
+            (click)="activeMenu = 'admin-overview'"
+            routerLink="/admin"
+            [ngClass]="
+              activeMenu == 'admin-overview'
+                ? 'd-flex align-items-center justify-content-start active'
+                : 'd-flex align-items-center justify-content-start'
+            "
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="17"
+              height="17"
+              viewBox="0 0 17 17"
+            >
+              <path
+                id="icon-dashboard"
+                d="M10.5,19A8.5,8.5,0,1,1,19,10.5,8.5,8.5,0,0,1,10.5,19ZM5.128,6.335A6.766,6.766,0,0,0,3.751,9.65h.8a.85.85,0,1,1,0,1.7h-.8a6.758,6.758,0,0,0,1.122,2.975A8.466,8.466,0,0,1,9.65,12.242V7.95a.85.85,0,1,1,1.7,0v4.292a8.466,8.466,0,0,1,4.777,2.083,6.758,6.758,0,0,0,1.122-2.975h-.8a.85.85,0,1,1,0-1.7h.8a6.766,6.766,0,0,0-1.377-3.315l-.561.561A.853.853,0,0,1,14.1,5.689l.57-.561A6.766,6.766,0,0,0,11.35,3.751v.8a.85.85,0,1,1-1.7,0v-.8A6.717,6.717,0,0,0,6.335,5.128l.561.561A.853.853,0,0,1,5.689,6.9l-.561-.57ZM6,15.6A6.774,6.774,0,0,0,15,15.6,6.775,6.775,0,0,0,6,15.6Z"
+                transform="translate(-2 -2)"
+                [attr.fill]="
+                  activeMenu == 'admin-overview' ? '#3f82c7' : '#b4b4bf'
+                "
+              />
+            </svg>
+            <span
+              [ngStyle]="
+                activeMenu == 'admin-overview'
+                  ? { color: '#3f82c7' }
+                  : { color: '#b4b4bf' }
+              "
+            >
+              Overview
+            </span>
+          </li>
+          <li
+            (click)="activeMenu = 'admin-users'"
+            routerLink="/admin/users"
+            [ngClass]="
+              activeMenu == 'admin-users'
+                ? 'd-flex align-items-center justify-content-start active'
+                : 'd-flex align-items-center justify-content-start'
+            "
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14.667"
+              height="14.667"
+              viewBox="0 0 14.667 14.667"
+            >
+              <path
+                id="Path_203"
+                data-name="Path 203"
+                d="M11.333,5.742A1.925,1.925,0,1,1,9.408,7.667a1.925,1.925,0,0,1,1.925-1.925m0,8.25c2.722,0,5.592,1.338,5.592,1.925v1.008H5.742V15.917c0-.587,2.869-1.925,5.592-1.925m0-9.992A3.667,3.667,0,1,0,15,7.667,3.666,3.666,0,0,0,11.333,4Zm0,8.25C8.886,12.25,4,13.478,4,15.917V17.75a.919.919,0,0,0,.917.917H17.75a.919.919,0,0,0,.917-.917V15.917C18.667,13.478,13.781,12.25,11.333,12.25Z"
+                transform="translate(-4 -4)"
+                [attr.fill]="
+                  activeMenu == 'admin-users' ? '#3f82c7' : '#b4b4bf'
+                "
+              />
+            </svg>
+            <span
+              [ngStyle]="
+                activeMenu == 'admin-users'
+                  ? { color: '#3f82c7' }
+                  : { color: '#b4b4bf' }
+              "
+            >
+              Users
+            </span>
+          </li>
+          <li
+            (click)="activeMenu = 'admin-site-content'"
+            [ngClass]="
+              activeMenu == 'admin-site-content'
+                ? 'd-flex align-items-center justify-content-start active'
+                : 'd-flex align-items-center justify-content-start'
+            "
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16.5"
+              height="18.333"
+              viewBox="0 0 16.5 18.333"
+            >
+              <path
+                id="Path_215"
+                data-name="Path 215"
+                d="M6.667,13.833h6.417v1.833H6.667Zm0-3.667h9.167V12H6.667Zm0-3.667h9.167V8.333H6.667Zm11-3.667H13.835a2.739,2.739,0,0,0-5.17,0H4.833a1.606,1.606,0,0,0-.367.037,1.852,1.852,0,0,0-1.32,1.091A1.766,1.766,0,0,0,3,4.667V17.5a1.881,1.881,0,0,0,.147.715,1.943,1.943,0,0,0,.394.587,1.841,1.841,0,0,0,.926.5,2.379,2.379,0,0,0,.367.028H17.667A1.839,1.839,0,0,0,19.5,17.5V4.667A1.839,1.839,0,0,0,17.667,2.833ZM11.25,2.6a.688.688,0,1,1-.687.688A.693.693,0,0,1,11.25,2.6Zm6.417,14.9H4.833V4.667H17.667Z"
+                transform="translate(-3 -1)"
+                [attr.fill]="
+                  activeMenu == 'admin-site-content' ? '#3f82c7' : '#b4b4bf'
+                "
+              />
+            </svg>
+            <span [ngStyle]="
+            activeMenu == 'admin-site-content'
+              ? { color: '#3f82c7' }
+              : { color: '#b4b4bf' }
+          "> Site Content </span>
+          </li>
+          <li
+            (click)="activeMenu = 'admin-design'"
+            [ngClass]="
+              activeMenu == 'admin-design'
+                ? 'd-flex align-items-center justify-content-start active'
+                : 'd-flex align-items-center justify-content-start'
+            "
+          >
+            <svg
+              id="outline-palette-24px"
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              viewBox="0 0 22 22"
+            >
+              <path
+                id="Path_212"
+                data-name="Path 212"
+                d="M0,0H22V22H0Z"
+                fill="none"
+              />
+              <path
+                id="Path_213"
+                data-name="Path 213"
+                d="M11.167,20.333A9.167,9.167,0,1,1,11.167,2c5.051,0,9.167,3.7,9.167,8.25a5.5,5.5,0,0,1-5.5,5.5H13.211a.454.454,0,0,0-.458.458.484.484,0,0,0,.119.3,2.332,2.332,0,0,1,.587,1.531A2.293,2.293,0,0,1,11.167,20.333Zm0-16.5a7.333,7.333,0,1,0,0,14.667.454.454,0,0,0,.458-.458.5.5,0,0,0-.128-.321,2.286,2.286,0,0,1,1.714-3.8h1.622A3.666,3.666,0,0,0,18.5,10.25C18.5,6.712,15.209,3.833,11.167,3.833Z"
+                transform="translate(-0.167 -0.167)"
+                [attr.fill]="
+                  activeMenu == 'admin-design' ? '#3f82c7' : '#b4b4bf'
+                "
+              />
+              <circle
+                id="Ellipse_40"
+                data-name="Ellipse 40"
+                cx="1.375"
+                cy="1.375"
+                r="1.375"
+                transform="translate(4.583 9.167)"
+                [attr.fill]="
+                  activeMenu == 'admin-design' ? '#3f82c7' : '#b4b4bf'
+                "
+              />
+              <circle
+                id="Ellipse_41"
+                data-name="Ellipse 41"
+                cx="1.375"
+                cy="1.375"
+                r="1.375"
+                transform="translate(7.333 5.5)"
+                [attr.fill]="
+                  activeMenu == 'admin-design' ? '#3f82c7' : '#b4b4bf'
+                "
+              />
+              <circle
+                id="Ellipse_42"
+                data-name="Ellipse 42"
+                cx="1.375"
+                cy="1.375"
+                r="1.375"
+                transform="translate(11.917 5.5)"
+                [attr.fill]="
+                  activeMenu == 'admin-design' ? '#3f82c7' : '#b4b4bf'
+                "
+              />
+              <circle
+                id="Ellipse_43"
+                data-name="Ellipse 43"
+                cx="1.375"
+                cy="1.375"
+                r="1.375"
+                transform="translate(14.667 9.167)"
+                [attr.fill]="
+                  activeMenu == 'admin-design' ? '#3f82c7' : '#b4b4bf'
+                "
+              />
+            </svg>
+            <span [ngStyle]="
+            activeMenu == 'admin-design'
+              ? { color: '#3f82c7' }
+              : { color: '#b4b4bf' }
+          "> Design & Appearance </span>
+          </li>
+          <li
+            (click)="activeMenu = 'admin-site-features'"
+            [ngClass]="
+              activeMenu == 'admin-site-features'
+                ? 'd-flex align-items-center justify-content-start active'
+                : 'd-flex align-items-center justify-content-start'
+            "
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16.5"
+              height="17.48"
+              viewBox="0 0 16.5 17.48"
+            >
+              <path
+                id="Path_217"
+                data-name="Path 217"
+                d="M11.241,17.162,4.485,11.909,3,13.064l8.25,6.417,8.25-6.417L18.006,11.9Zm.009-2.328L18,9.581l1.5-1.164L11.25,2,3,8.417,4.494,9.581Zm0-10.514,5.262,4.1-5.262,4.1-5.262-4.1,5.262-4.1Z"
+                transform="translate(-3 -2)"
+                [attr.fill]="
+                  activeMenu == 'admin-site-features' ? '#3f82c7' : '#b4b4bf'
+                "
+              />
+            </svg>
+            <span [ngStyle]="
+            activeMenu == 'admin-site-features'
+              ? { color: '#3f82c7' }
+              : { color: '#b4b4bf' }
+          "> Site Features </span>
+          </li>
+          <li
+            (click)="activeMenu = 'admin-projects'"
+            routerLink="/admin/projects"
+            [ngClass]="
+              activeMenu == 'admin-projects'
+                ? 'd-flex align-items-center justify-content-start active'
+                : 'd-flex align-items-center justify-content-start'
+            "
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16.5"
+              height="16.5"
+              viewBox="0 0 16.5 16.5"
+            >
+              <path
+                id="Path_263"
+                data-name="Path 263"
+                d="M11.25,8.5h3.667a.917.917,0,0,0,0-1.833H11.25a.917.917,0,1,0,0,1.833Zm0,3.667h3.667a.917.917,0,0,0,0-1.833H11.25a.917.917,0,0,0,0,1.833Zm0,3.667h3.667a.917.917,0,0,0,0-1.833H11.25a.917.917,0,1,0,0,1.833ZM6.667,6.667H8.5V8.5H6.667Zm0,3.667H8.5v1.833H6.667Zm0,3.667H8.5v1.833H6.667ZM18.583,3H3.917A.919.919,0,0,0,3,3.917V18.583a.919.919,0,0,0,.917.917H18.583a.919.919,0,0,0,.917-.917V3.917A.919.919,0,0,0,18.583,3Zm-.917,14.667H4.833V4.833H17.667Z"
+                transform="translate(-3 -3)"
+                [attr.fill]="
+                  activeMenu == 'admin-projects' ? '#3f82c7' : '#b4b4bf'
+                "
+              />
+            </svg>
+            <span [ngStyle]="
+            activeMenu == 'admin-projects'
+              ? { color: '#3f82c7' }
+              : { color: '#b4b4bf' }
+          "> Projects </span>
+          </li>
+
+          <li
+            (click)="activeMenu = 'admin-payments'"
+            [ngClass]="
+              activeMenu == 'admin-payments'
+                ? 'd-flex align-items-center justify-content-start active'
+                : 'd-flex align-items-center justify-content-start'
+            "
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18.333"
+              height="14.667"
+              viewBox="0 0 18.333 14.667"
+            >
+              <path
+                id="Path_119"
+                data-name="Path 119"
+                d="M18.5,4H3.833A1.819,1.819,0,0,0,2.009,5.833L2,16.833a1.827,1.827,0,0,0,1.833,1.833H18.5a1.827,1.827,0,0,0,1.833-1.833v-11A1.827,1.827,0,0,0,18.5,4Zm0,12.833H3.833v-5.5H18.5Zm0-9.167H3.833V5.833H18.5Z"
+                transform="translate(-2 -4)"
+                [attr.fill]="
+                  activeMenu == 'admin-payments' ? '#3f82c7' : '#b4b4bf'
+                "
+              />
+            </svg>
+            <span [ngStyle]="
+            activeMenu == 'admin-payments'
+              ? { color: '#3f82c7' }
+              : { color: '#b4b4bf' }
+          "> Payments </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar__options" *ngIf="activeMenu == 'option'">
+    <div class="sidebar__options-header">
+      options
+    </div>
+    <div class="sidebar__options-body">
+      <div class="d-flex justify-content-between align-items-center">
+        <p class="sidebar__options-item">Welcome Screen</p>
+        <div>
+          <input type="checkbox" class="ios8-switch" id="checkbox--1" [(ngModel)]="project.welcomeScreen" (ngModelChange)="welcomeScreenChanged($event)"/>
+          <label for="checkbox--1"></label>
+        </div>
+      </div>
+      <div class="d-flex justify-content-between align-items-center">
+        <p class="sidebar__options-item">Thank you Screen</p>
+        <div>
+          <input type="checkbox" class="ios8-switch" id="checkbox-0" [(ngModel)]="project.thankyouScreen" (ngModelChange)="thankyouScreenChanged($event)"/>
+          <label for="checkbox-0"></label>
+        </div>
+      </div>
+      <div class="d-flex justify-content-between align-items-center">
+        <p class="sidebar__options-item">Closed</p>
+        <div>
+          <input type="checkbox" class="ios8-switch" id="checkbox-1" [(ngModel)]="project.closed" (ngModelChange)="dataChanged($event)"/>
+          <label for="checkbox-1"></label>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center">
+        <p class="sidebar__options-item">Kiosk Mode</p>
+        <div>
+          <input type="checkbox" class="ios8-switch" id="checkbox-2" [(ngModel)]="project.kioskMode" (ngModelChange)="dataChanged($event)"/>
+          <label for="checkbox-2"></label>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center">
+        <p class="sidebar__options-item">Progress bar</p>
+        <div>
+          <input type="checkbox" class="ios8-switch" id="checkbox-3" [(ngModel)]="project.progressBar" (ngModelChange)="dataChanged($event)"/>
+          <label for="checkbox-3"></label>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center">
+        <p class="sidebar__options-item">Limit by number of responses</p>
+        <div>
+          <input type="checkbox" class="ios8-switch" id="checkbox-4" [(ngModel)]="project.flag_limit_number" (ngModelChange)="flagLimitNumberChanged($event)"/>
+          <label for="checkbox-4"></label>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <input class="sidebar__input" type="number" [(ngModel)] = "project.limitNumberResponse" *ngIf="project.flag_limit_number" (keyup.enter)="limitNumberResponseChanged($event)">
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center">
+        <p class="sidebar__options-item">Limit by date and time</p>
+        <div>
+          <input type="checkbox" class="ios8-switch" id="checkbox-5" [(ngModel)]="project.flag_limit_date_time" (ngModelChange)="flagLimitDateTimeChanged($event)"/>
+          <label for="checkbox-5"></label>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <input
+          class="sidebar__input"
+          type="date"
+          [ngModel]="project.limitDateTime | date: 'yyyy-MM-dd'"
+          (ngModelChange)="project.limitDateTime = $event"
+          *ngIf="project.flag_limit_date_time"
+          (keyup.enter)="limitDateTimeChanged($event)" />
+      </div>
+
+    </div>
+  </div>
+</div>

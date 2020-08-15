@@ -1,0 +1,115 @@
+<ct-navigation-bar type="dashboard"></ct-navigation-bar>
+<div class="dashboard__wrapper">
+  <div
+    class="dashboard d-flex flex-column"
+    *ngIf="projects !== null && projects.length !== 0"
+  >
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="d-flex align-items-center">
+        <p class="dashboard__text__project">
+          Projects <span> {{ projects.length }} total </span>
+        </p>
+        <p class="dashboard__text__sortby d-flex align-items-center">
+          <span>Sort by:</span>
+          <select
+            class="browser-default custom-select"
+            [(ngModel)]="sortBy"
+            (mouseup)="onChange()"
+          >
+            <option (click)="onChange($event)" value="name">Name</option>
+            <option value="createdAt">Date</option>
+            <option value="type">Type</option>
+            <option value="respondent">Respondents</option>
+            <option value="questions">Questions</option>
+          </select>
+        </p>
+      </div>
+      <button class="btn dashboard__btn__create" (click)="openNewProjectDlg()">
+        Create New Project
+      </button>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th style="width: 40%"></th>
+          <!-- <th>TYPE</th> -->
+          <th>STATUS</th>
+          <th>RESPONDENTS</th>
+          <th>QUESTIONS</th>
+          <th class="text-center">ANALYSIS</th>
+          <th style="width: 5%"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let project of projects">
+          <td class="project__name" (click)="navigateToProject(project)">
+            {{ project.name }}<br />
+            <span>{{ project.createdAt | date: 'medium' }}</span>
+          </td>
+          <!-- <td class="project__type">
+            {{ project.type }}
+          </td> -->
+          <td [ngClass]="'project__status ' + 'project__status__' + project.status">
+            <div class="d-flex">
+              <p></p>
+              <span>{{ project.status }}</span>
+            </div>
+          </td>
+          <td class="project__respondent">
+            {{ project.respondent }}
+          </td>
+          <td class="project__questions">
+            {{ project.questions }}
+          </td>
+          <td class="text-center project__analysis">
+            <img
+              src="assets/image/icon_analysis.png"
+              [routerLink]="['/project/' + project._id + '/analyze']"
+            />
+          </td>
+          <td
+            class="project__actions"
+            (click)="currentPro = project"
+            (mouseleave)="currentPro = null"
+          >
+            <p class="btn">...</p>
+            <div *ngIf="project === currentPro" class="project__actions__items">
+              <li (click)="updateProjectStatus(currentPro)">
+                {{
+                  project.status == 'new' || project.status == 'closed'
+                    ? 'Activate'
+                    : 'Close'
+                }}
+              </li>
+              <li [routerLink]="['/project/' + project._id + '/build']">
+                Edit
+              </li>
+              <li (click)="duplicateProject(currentPro)">Duplicate</li>
+              <li (click)="deleteProject(currentPro)">Delete</li>
+              <li [routerLink]="['/project/' + project._id + '/share']">
+                Share
+              </li>
+              <li [routerLink]="['/projects/' + project._id]">Preview</li>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div
+    class="dashboard d-flex flex-column align-items-center justify-content-center dashboard__empty"
+    *ngIf="projects === null || projects.length === 0"
+  >
+    <div class="dashboard__empty__box"></div>
+    <h1>You don't have any surveys yet, start creating one</h1>
+    <button class="btn dashboard__btn__create" (click)="openNewProjectDlg()">
+      Create New Project
+    </button>
+
+    <p class="dashboard__empty__help">
+      Not sure where to start? Visit our<a href="/">&nbsp;Help Center</a>
+    </p>
+  </div>
+</div>

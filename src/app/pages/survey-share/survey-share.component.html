@@ -1,0 +1,56 @@
+<ct-navigation-bar
+  type="survey"
+  [name]="project.name || ''"
+  pageName="share"
+></ct-navigation-bar>
+<div class="d-flex flex-column share">
+  <h3>How do you want to share your survey?</h3>
+  <div class="d-flex flex-column share__weblink">
+    <h4>Web Link</h4>
+    <p>Share it with people so they can visit and respond to your Survey</p>
+    <div class="d-flex flex-wrap justify-content-between">
+      <div
+        class="justify-content-center d-flex align-items-center pull-right share__weblink--link"
+        (click)="navigateToPreview()"
+      >
+        <span>{{ url }}</span>
+      </div>
+      <button
+        class="justify-content-center d-flex align-items-center share__weblink--copy-button"
+        (click)="copyUrl()"
+      >
+        <span>Copy</span>
+      </button>
+      <button
+        class="justify-content-center d-flex align-items-center share__weblink--download-button"
+        (click)="getQRCodeImage()"
+      >
+        <img src="assets/image/icon-arrow-down.svg" />
+        <span>Download QR Code</span>
+      </button>
+    </div>
+  </div>
+  <div class="d-flex share__feature">
+    <div class="share__feature--item">
+      <div>
+        <h4>Embed in a web page</h4>
+        <p>
+          Paste this into your HTML wherever you want the embedded survey to
+          appear on your page.
+        </p>
+        <button><span>Copy Code</span></button>
+      </div>
+    </div>
+
+    <div class="share__feature--item">
+      <div>
+        <h4>Add to Profile Page</h4>
+        <p>
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+          nonumy eirmod.
+        </p>
+        <button (click)="addToProfilePage()"><span>Add</span></button>
+      </div>
+    </div>
+  </div>
+</div>

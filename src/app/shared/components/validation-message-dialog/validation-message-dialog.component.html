@@ -1,0 +1,33 @@
+<div
+  mat-dialog-title
+  [ngStyle]="{'color': data.icon=='warning' ? 'red' : '#3E3E40'}"
+>
+  <div class="row-flex">
+    <mat-icon style="flex: 0.5; font-size: 30px; margin-top: -17px; margin-left: 5px; margin-right : 5px"
+      >{{data.icon}}</mat-icon
+    >
+
+    <h4 style="flex:0.5; margin-left: 10px; margin-top: -3px;" >{{data.title}}</h4>
+
+    <div style="flex:8"></div>
+  </div>
+</div>
+<div mat-dialog-content>
+  <div class="row-flex">
+    <div
+      style="flex: 1; align-self: center; text-align: center; margin-bottom:10px; font-size: 18px;"
+      [ngStyle]="{'color': data.icon=='warning' ? 'red' : '#3E3E40'}"
+    >
+      {{data.message}}
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <div class="row-flex" style="margin-bottom: 5px;">
+
+
+    <button mat-button (click)="confirm()">OK</button>
+    <button mat-button (click)="cancel()" *ngIf="data.cancelButton">Cancel</button>
+    <div class="flex-space"></div>
+  </div>
+</div>

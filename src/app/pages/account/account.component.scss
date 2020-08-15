@@ -1,0 +1,57 @@
+ @import 'src/assets/style/variable';
+.navbar {
+  padding: 0px;
+
+  &-border {
+    box-shadow: 0 0.5px $color-dark-gray;
+  }
+}
+
+.account {
+  min-height: 100vh;
+  background-color: #fafafa;
+  padding-top: 4rem;
+
+  &__wrapper {
+    width: 50%;
+    padding: 3rem;
+    border-radius: 5px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+
+    input {
+      width: 50%;
+      border: 1px solid #707070;
+      border-radius: 2px;
+      font-size: 1rem;
+      color: #333340;
+    }
+
+    label {
+      font-weight: 600;
+    }
+  }
+
+  &__error {
+    text-align: center;
+    color: red;
+  }
+
+  &__submit {
+    margin-top: 2rem;
+    padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+    color: white;
+    background: $color-secondary;
+    border: 1px solid $color-secondary;
+    border-radius: 50px;
+  }
+}

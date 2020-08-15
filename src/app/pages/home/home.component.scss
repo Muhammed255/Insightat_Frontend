@@ -1,0 +1,97 @@
+ @import 'src/assets/style/variable';
+
+.home {
+  padding-top: 4.5rem;
+  padding-bottom: 3rem;
+  margin-left: 20%;
+
+  &__background__img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    // height: 100%;
+    z-index: -1;
+  }
+
+  &__wrapper {
+    overflow-x: hidden;
+  }
+
+  &__footer {
+    position: relative;
+    height: 3vh;
+  }
+
+  .row {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+
+  .template {
+    position: relative;
+
+    &__new__button {
+      background-color: $color-lite-secondary;
+      padding: 0.5rem;
+      color: $color-dark-gray;
+      font-size: 0.75rem;
+      border-radius: 1rem;
+      display: inline;
+      cursor: pointer;
+
+      > span {
+        color: white;
+        background-color: $color-secondary;
+        padding: 0.3rem;
+        font-size: 0.625rem;
+        border-radius: 1rem;
+        padding: 4px 10px 4px 10px;
+        margin-right: 0.5rem;
+      }
+
+      > i {
+        margin-left: 0.7rem;
+      }
+    }
+
+    &__text {
+      margin-top: 1rem;
+      font-size: 3rem;
+    }
+
+    &__drag__drop {
+      width: 1000px;
+    }
+
+    &__signup__free {
+      margin-top: 3rem;
+      font-size: 0.875rem;
+      font-weight: 300;
+
+      .btn-sign-up-free {
+        font-size: 0.875rem;
+        background-color: $color-primary;
+        border: solid 1px $color-primary;
+        border-radius: 1.5rem;
+        padding: 0.575rem 1.5rem;
+        color: $color-white;
+        position: relative;
+        margin-right: 40px;
+
+        &::after {
+          position: absolute;
+          content: ' ';
+          background-color: $color-mid-gray;
+          height: 35px;
+          width: 1px;
+          right: -25px;
+          top: 3px;
+        }
+      }
+
+      > span {
+        color: $color-mid-gray;
+      }
+    }
+  }
+}

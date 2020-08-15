@@ -1,0 +1,18 @@
+ @import 'src/assets/style/variable';
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding-bottom: 10px;
+
+  > a {
+    font-size: 0.875rem;
+    color: $color-dark-gray;
+  }
+
+  > p {
+    margin-left: 3px;
+    margin-right: 3px;
+  }
+}

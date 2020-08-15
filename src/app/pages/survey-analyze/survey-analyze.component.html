@@ -1,0 +1,293 @@
+<ct-navigation-bar
+  type="survey"
+  [name]="project.name || ''"
+  pageName="analyze"
+></ct-navigation-bar>
+<div class="analyze">
+  <div class="analyze__sidebar">
+    <ul>
+      <!-- <li
+        [ngClass]="currentItem == 'status' ? 'active' : ''"
+        (click)="currentItem = 'status'"
+      >
+        Status
+      </li> -->
+      <li
+        [ngClass]="currentItem == 'results' ? 'active' : ''"
+        (click)="currentItem = 'results'"
+      >
+        Results
+      </li>
+      <li
+        [ngClass]="currentItem == 'individual' ? 'active' : ''"
+        (click)="currentItem = 'individual'"
+      >
+        Individual Responses<span>{{ total }}</span>
+      </li>
+    </ul>
+  </div>
+  <div class="d-flex flex-column analyze__background" *ngIf="currentItem == 'results'">
+    <div class="analyze__header">
+      <span *ngIf="tabInfor == 'diagram'">Respondents: {{ total }} of {{ total }} </span>
+      <span *ngIf="tabInfor != 'diagram'"></span>
+      <div class="d-flex justify-content-around align-items-center">
+        <div class="analyze__header__search" *ngIf="tabInfor == 'table'">
+          <span></span>
+          <input type="text" placeholder="Search" />
+        </div>
+
+        <div
+          [ngClass]="
+            tabInfor == 'diagram'
+              ? 'analyze__header__diagram-item active'
+              : 'analyze__header__diagram-item'
+          "
+          (click)="tabInfor = 'diagram'"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+          >
+            <path
+              id="Path_273"
+              data-name="Path 273"
+              d="M11,2a9,9,0,1,0,9,9A9,9,0,0,0,11,2Zm7.137,8.1H11.9V3.863A7.2,7.2,0,0,1,18.137,10.1ZM3.8,11a7.2,7.2,0,0,1,6.3-7.137V18.137A7.2,7.2,0,0,1,3.8,11Zm8.1,7.137V11.9h6.237A7.2,7.2,0,0,1,11.9,18.137Z"
+              transform="translate(-2 -2)"
+              [attr.fill]="tabInfor == 'diagram' ? '#333340' : '#767680'"
+            />
+          </svg>
+        </div>
+
+        <div
+          [ngClass]="
+            tabInfor == 'table'
+              ? 'analyze__header__diagram-item active'
+              : 'analyze__header__diagram-item'
+          "
+          (click)="tabInfor = 'table'"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="17"
+            height="16"
+            viewBox="0 0 17 16"
+          >
+            <path
+              id="Path_275"
+              data-name="Path 275"
+              d="M18.211,3H4.789A1.789,1.789,0,0,0,3,4.778V17.222A1.789,1.789,0,0,0,4.789,19H18.211A1.789,1.789,0,0,0,20,17.222V4.778A1.789,1.789,0,0,0,18.211,3Zm0,1.778V7.444H4.789V4.778ZM13.737,17.222H9.263v-8h4.474Zm-8.947-8H7.474v8H4.789Zm10.737,8v-8h2.684v8Z"
+              transform="translate(-3 -3)"
+              [attr.fill]="tabInfor == 'table' ? '#333340' : '#767680'"
+            />
+          </svg>
+        </div>
+
+        <button class="btn analyze__header__export-button" (click)="exportResult()">
+          Expert Data & Report
+        </button>
+      </div>
+    </div>
+
+    <div class="analyze__body" *ngIf="responses && tabInfor == 'diagram'">
+      <div *ngFor="let item of responses; let i = index" class="analyze__body__question">
+        <h3 class="question-name">
+          {{ 'Q' + (i + 1) }} <span>{{ item.title }}</span>
+        </h3>
+
+        <p class="question-respondent">
+          {{ 'Answered: ' + item.respondent + ' Skipped: ' + (total - item.respondent) }}
+        </p>
+
+        <div class="question-diagram-wrapper d-flex flex-row row align-items-center" *ngIf="item.values && i % 2 == 0" style="transform: translateX(-15%)">
+          <div class="col-lg-10 col-md-10">
+            <canvas
+              baseChart
+              [data]="item.values"
+              [labels]="item.choices"
+              [chartType]="'doughnut'"
+              [colors]="defaultColor"
+              [options]="i % 2 == 0 ? pieChartOptions : barChartOptions"
+            >
+            </canvas>
+          </div>
+          <div class="col-lg-2 col-md-2" style="padding: 0">
+            <div *ngFor="let per of item.values; let id = index">
+              <p class="question-diagram__label_percent">{{per.toFixed() + '%'}}</p>
+              <div class="d-flex align-items-center">
+                <span class="question-diagram__label_prefix" [ngStyle]="{'background-color' : defaultColor[0].backgroundColor[id % 5]}"></span>
+                <span class="question-diagram__label_text" [ngStyle]="{'color' : defaultColor[0].backgroundColor[id % 5]}">
+                  {{item.choices[id]}}
+                </span>
+              </div>
+              <hr/>
+            </div>
+          </div>
+        </div>
+
+        <div class="question-diagram-wrapper" *ngIf="item.values && i % 2 == 1">
+          <canvas
+            baseChart
+            [data]="item.values"
+            [labels]="item.choices"
+            [chartType]="'horizontalBar'"
+            [colors]="defaultColor"
+            [options]="i % 2 == 0 ? pieChartOptions : barChartOptions"
+          >
+          </canvas>
+        </div>
+
+        <div class="question-table-wrapper" *ngIf="item.table">
+          <table class="table table-striped">
+            <tbody>
+              <tr *ngFor="let item of item.table">
+                <td>
+                  <p [innerHtml]="getTextFromObject(item.value)"></p>
+                  <span>{{ item.time | date: 'medium' }}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="analyze__body__table" *ngIf="responses && tabInfor == 'table'">
+      <table class="table" *ngIf="project">
+        <thead class="table">
+          <tr *ngIf="project.json">
+            <th>
+              <input type="checkbox" [(ngModel)]="selectAll" />
+            </th>
+            <th *ngFor="let proj of project.json; let i = index">
+              <span
+                style="position: relative"
+                (mouseenter)="toggleNum = i"
+                (mouseleave)="toggleNum = -1"
+                >{{ 'Q' + (i + 1) }}
+                <div class="header__toggle" *ngIf="toggleNum == i">
+                  <h3>QUESTION {{ i + 1 }}</h3>
+                  <p>{{ proj.title || proj.name }}</p>
+                </div>
+              </span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="
+              let response of (fullResponses
+                | paginate
+                  : {
+                      itemsPerPage: 5,
+                      currentPage: currentPage
+                    })
+            "
+          >
+            <td>
+              <input type="checkbox" [checked]="selectAll" />
+            </td>
+            <td
+              *ngFor="let key of getObjectKeys(response.json); let i = index"
+              [innerHtml]="getTextFromObject(response.json[key], i)"
+            ></td>
+          </tr>
+          <!-- <tr *ngFor="let project of projects"></tr> -->
+        </tbody>
+      </table>
+
+      <div class="analyze__pagination">
+        <pagination-controls
+          (pageChange)="currentPage = $event"
+          autoHide="true"
+          responsive="true"
+          maxSize="100"
+        ></pagination-controls>
+      </div>
+    </div>
+  </div>
+
+  <div class="individual__background" *ngIf="currentItem == 'individual'">
+    <div class="individual__header">
+      <div class="individual__header__navigation">
+        <div class="individual__header__navigation__current">
+          {{ 'Respondent  ' + (individualNum + 1) }}
+        </div>
+        <div
+          class="individual__header__navigation__next"
+          (click)="individualNum = individualNum < 1 ? 0 : (individualNum - 1) % total"
+        >
+          <i class="fa fa-chevron-left"></i>
+        </div>
+        <div
+          class="individual__header__navigation__prev"
+          (click)="individualNum = (individualNum + 1) % total"
+        >
+          <i class="fa fa-chevron-right"></i>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center">
+      <div class="individual__left">
+        <div>
+          <div class="individual__left__item">
+            <input type="checkbox" />
+            <label>
+              <strong>{{ total }} <small>&nbsp;responses in total</small></strong>              
+            </label>
+          </div>
+          <div class="individual__left__item">
+            <input type="checkbox" />
+            <label>2 Oct 2018 <span>completed</span></label>
+          </div>
+        </div>
+
+        <button class="individual__left__download--button" (click)="exportResult()">
+          Download all responses
+        </button>
+      </div>
+      <div class="individual">
+        <div class="individual__top">
+          <div class="d-flex align-items-center">
+            <h3>
+              {{ fullResponses[individualNum].createdAt | date: 'd MMM y' }}
+            </h3>
+            <span>{{ fullResponses[individualNum].createdAt | date: 'shortTime' }}</span>
+            <div
+              class="individual__top__status--complete"
+              *ngIf="fullResponses[individualNum].json != {}"
+            >
+              completed
+            </div>
+            <div
+              class="individual__top__status--noresponse"
+              *ngIf="fullResponses[individualNum].json == {}"
+            >
+              no response
+            </div>
+          </div>
+
+          <div class="individual__top__delete" (click)="removeIndividualResponse()">
+            <img src="/assets/image/icon-trash.svg" />
+          </div>
+        </div>
+
+        <div
+          class="individual__question"
+          *ngFor="let item of project.json; let i = index"
+        >
+          <h3 class="individual__question__title">
+            {{ 'Q' + (i + 1) }}<span>{{ item.title || item.name }}</span>
+          </h3>
+          <p
+            class="individual__question__response"
+            [innerHtml]="
+              getIndividualRText(fullResponses[individualNum].json[item.name], i)
+            "
+          ></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

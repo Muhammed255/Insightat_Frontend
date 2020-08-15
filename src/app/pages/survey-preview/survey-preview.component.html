@@ -1,0 +1,56 @@
+<div id="preview">
+  <div *ngIf="!error">
+    <div class="welcome" *ngIf="step_num == 0">
+      <div class="welcome__wrapper">
+        <img *ngIf="project.logoImgUrl" [src]="project.logoImgUrl" />
+        <h1>{{ project.welcomeScreenText }}</h1>
+        <p>{{ project.welcomeScreenDescription }}</p>
+        <button (click)="step_num = 1">Get Started</button>
+      </div>
+    </div>
+
+    <div
+      [ngStyle]="{ backgroundColor: project.backgroundColor }"
+      class="d-flex justify-content-center align-items-center preview"
+      *ngIf="step_num == 1"
+    >
+      <survey
+        [json]="project.json"
+        [mainColor]="project.mainColor"
+        [mainTextColor]="project.mainTextColor"
+        [questionColor]="project.questionColor"
+        [answerColor]="project.answerColor"
+        [pageColor]="project.pageColor"
+        [progressBar]="project.progressBar"
+        class="d-flex justify-content-center align-items-center"
+        (submitSurvey)="sendData($event)"
+      ></survey>
+    </div>
+
+    <div class="welcome" *ngIf="step_num == 2">
+      <div class="welcome__wrapper">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="80.244"
+          height="60"
+          viewBox="0 0 80.244 60"
+        >
+          <path
+            id="Path_107"
+            data-name="Path 107"
+            d="M20.166,67.189A2.462,2.462,0,0,0,22.2,68.244a2.716,2.716,0,0,0,.509-.1,2.37,2.37,0,0,0,.368.081A2.61,2.61,0,0,0,25,67.371L79.8,12.562a2.529,2.529,0,0,0-3.577-3.578L22.674,62.54,4.614,44.485a2.529,2.529,0,0,0-3.577,3.578L20.166,67.189Z"
+            transform="translate(-0.296 -8.244)"
+            fill="#fff"
+          />
+        </svg>
+
+        <h1>{{ project.thankyouScreenText }}</h1>
+        <p>{{ project.thankyouScreenDescription }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="error" class="welcome d-flex justify-content-center">
+    <h1>{{ error }}</h1>
+  </div>
+</div>

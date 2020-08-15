@@ -1,0 +1,99 @@
+ @import 'src/assets/style/variable';
+.contact {
+  margin-top: 100px;
+  position: relative;
+  margin: auto;
+  margin-top: 4rem;
+  width: 80%;
+  background-image: url('/assets/image/contact-us-background.png');
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+
+  &__label {
+    width: 100%;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+  }
+
+  &__input {
+    width: 100%;
+    margin-bottom: 1.8rem;
+    border: none;
+    border-bottom: 1px solid $color-light-gray;
+  }
+
+  &__textarea {
+    width: 100%;
+    margin-bottom: 1.8rem;
+    border: 1px solid $color-light-gray;
+    border-radius: 5px;
+  }
+
+  &__button {
+    width: 100%;
+    background: $color-primary;
+    color: white;
+    border: 1px solid $color-primary;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 50px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transform: translateX(110px);
+    z-index: 100;
+  }
+
+  &__form {
+    padding: 4rem 3rem 4rem 3rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 59px 99px rgba(0, 0, 0, 0.08);
+
+    h1 {
+      font-size: 2rem;
+      color: $color-black;
+      font-weight: 400;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+  }
+
+  &__links {
+    > p {
+      font-size: 1.25rem;
+      color: $color-black;
+      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    &__item {
+      background: $color-ultra-light-gray;
+      border: 1px solid $color-ultra-light-gray;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  &__right {
+    img {
+      width: 100%;
+    }
+  }
+
+  &__footer {
+    height: 20vh;
+    position: relative;
+  }
+}

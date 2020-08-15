@@ -1,0 +1,101 @@
+<div class="admin-user">
+  <ct-navigation-bar type="dashboard"></ct-navigation-bar>
+
+  <div class="d-flex" style="background: #fafafa;">
+    <ct-sidebar menuType="admin" menuName="admin-projects"></ct-sidebar>
+    <div class="admin-user__wrapper" *ngIf="data">
+      <div class="d-flex flex-column">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center">
+            <p class="admin-user__text__project">
+              Projects <span> {{ data.length }} total </span>
+            </p>
+          </div>
+          <div class="d-flex">
+            <div class="admin-user__search">
+              <i class="fa fa-search" (click)="searchProject()"></i>
+              <input
+                type="text"
+                placeholder="Search"
+                (keyup.enter)="searchProject()"
+                [(ngModel)]="searchInput"
+              />
+            </div>
+          </div>
+        </div>
+
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>PROJECT NAME</th>
+              <th>CREATED BY</th>
+              <th>TYPE</th>
+              <th>STATUS</th>
+              <th>RESPONDENTS</th>
+              <th>QUESTIONS</th>
+              <th>ANALYZE</th>
+              <th class="admin-user__actions"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="
+                let project of (data
+                  | paginate
+                    : {
+                        itemsPerPage: 10,
+                        currentPage: currentPage
+                      })
+              "
+            >
+              <td class="admin-user__name" (click)="showIndividualUser(user)">
+                {{ project.name }}
+              </td>
+              <td>
+                {{ project.createdBy }}
+              </td>
+              <td class="project__type">
+                {{ project.type }}
+              </td>
+              <td class="project__status">
+                <div class="d-flex">
+                  <p [ngClass]="getPlanClass(project.status)"></p>
+                  <span>{{ project.status }}</span>
+                </div>
+              </td>
+              <td class="admin-user__plan">
+                {{ project.respondent }}
+              </td>
+              <td>
+                {{ project.questions }}
+              </td>
+              <td>
+                <img src="/assets/image/icon_analysis.png" />
+              </td>
+              <td
+                (click)="currentProject = project"
+                (mouseleave)="currentProject = null"
+                class="admin-user__actions"
+              >
+                <p>...</p>
+                <div
+                  *ngIf="project === currentProject"
+                  class="admin-user__actions__items"
+                >
+                  <li (click)="deleteProject(currentProject._id)">Delete</li>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <pagination-controls
+          class="admin-user__pagination"
+          (pageChange)="currentPage = $event"
+          autoHide="true"
+          responsive="true"
+          maxSize="100"
+        ></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>

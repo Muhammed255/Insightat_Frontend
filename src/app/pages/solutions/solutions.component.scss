@@ -1,0 +1,40 @@
+ @import 'src/assets/style/variable';
+.solutions {
+  margin-top: 100px;
+  &__footer {
+    height: 10vh;
+    position: relative;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    margin: 2.5rem 4rem 0 4rem;
+
+    &__description {
+      width: 75%;
+      color: $color-black;
+
+      h1 {
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-size: 1.25rem;
+      }
+    }
+
+    &__img {
+      width: 25%;
+
+      img {
+        box-shadow: 0 59px 99px rgba(0, 0, 0, 0.16);
+        border-radius: 50%;
+        border: white;
+        width: 60%;
+      }
+    }
+  }
+}

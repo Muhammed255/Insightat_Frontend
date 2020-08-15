@@ -1,0 +1,220 @@
+<div>
+  <ct-navigation-bar type="dashboard"></ct-navigation-bar>
+
+  <div class="d-flex" style="background: #fafafa;">
+    <ct-sidebar menuType="admin"></ct-sidebar>
+
+    <div class="admin-dashboard__wrapper">
+      <div class="admin-dashboard__body">
+        <div class="row">
+          <div class="col-xl-3 col-lg-6 admin-dashboard__section">
+            <div class="admin-dashboard__section__inner">
+              <div
+                class="d-flex justify-content-between align-items-center divider-bottom section-bottom"
+              >
+                <p class="admin-dashboard__section__title">Number of Users</p>
+                <p class="admin-dashboard__section__mid-number">
+                  {{ data.number_of_users[0] }}
+                </p>
+              </div>
+              <div class="d-flex justify-content-around">
+                <div class="text-center divider-right section-left-right">
+                  <p class="admin-dashboard__section__normal">Premier</p>
+                  <p class="admin-dashboard__section__small-number">
+                    {{ data.number_of_users[1] }}
+                  </p>
+                </div>
+
+                <div class="text-center divider-right section-left-right">
+                  <p class="admin-dashboard__section__normal">Advantage</p>
+                  <p class="admin-dashboard__section__small-number">
+                    {{ data.number_of_users[2] }}
+                  </p>
+                </div>
+
+                <div class="text-center section-left-right">
+                  <p class="admin-dashboard__section__normal">Standarad</p>
+                  <p class="admin-dashboard__section__small-number">
+                    {{ data.number_of_users[3] }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-lg-6 admin-dashboard__section">
+            <div class="admin-dashboard__section__inner">
+              <div class="d-flex flex-column justify-content-between">
+                <p class="admin-dashboard__section__title">Respondents</p>
+                <p class="admin-dashboard__section__subtitle">
+                  Total number of Respondents
+                </p>
+              </div>
+              <div class="d-flex justify-content-between">
+                <p class="admin-dashboard__section__big-number">
+                  {{ data.respondents }}
+                </p>
+                <div class="admin-dashboard__section__up">
+                  <i class="fa fa-arrow-up"></i>
+                  <p>1.3%</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-lg-6 admin-dashboard__section">
+            <div class="admin-dashboard__section__inner">
+              <div class="d-flex flex-column justify-content-between">
+                <p class="admin-dashboard__section__title">Visitors</p>
+                <p class="admin-dashboard__section__subtitle">
+                  Total number of visitors
+                </p>
+              </div>
+              <div class="d-flex justify-content-between">
+                <p class="admin-dashboard__section__big-number">
+                  {{ data.respondents + data.number_of_users[0] }}
+                </p>
+                <div class="admin-dashboard__section__minus">
+                  <i class="fa fa-minus"></i>
+                  <p>1.3%</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-lg-6 admin-dashboard__section ">
+            <div class="admin-dashboard__section__inner">
+              <div class="d-flex flex-column justify-content-between">
+                <p class="admin-dashboard__section__title">Average time</p>
+                <p class="admin-dashboard__section__subtitle">
+                  Average time per user
+                </p>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <p class="admin-dashboard__section__big-number">2,5/min</p>
+                <div class="admin-dashboard__section__up">
+                  <i class="fa fa-arrow-down"></i>
+                  <p>1.3%</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xl-4 col-lg-12 admin-dashboard__section">
+            <div class="admin-dashboard__section__inner">
+              <p class="admin-dashboard__section__small-number">
+                Number of projects
+              </p>
+              <canvas
+                class="admin-dashboard__section__chart"
+                baseChart
+                [data]="[
+                  data.number_of_projects[1],
+                  data.number_of_projects[2]
+                ]"
+                chartType="doughnut"
+                [colors]="defaultColor"
+              >
+              </canvas>
+              <p class="admin-dashboard__section__mid-number text-center">
+                {{ data.number_of_projects[0] }}
+              </p>
+              <div class="d-flex justify-content-center">
+                <div class="admin-dashboard__section__active-project">
+                  <span></span>
+                  <p class="admin-dashboard__section__small-number">
+                    &nbsp;&nbsp;Active
+                  </p>
+                  <p class="admin-dashboard__section__subtitle">
+                    &nbsp;· {{ data.number_of_projects[1] | number: '1.2-2' }} %
+                  </p>
+                </div>
+
+                <div class="admin-dashboard__section__close-project">
+                  <span></span>
+                  <p class="admin-dashboard__section__small-number">
+                    &nbsp;&nbsp;Closed
+                  </p>
+                  <p class="admin-dashboard__section__subtitle">
+                    &nbsp;· {{ data.number_of_projects[2] | number: '1.2-2' }} %
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-8 col-lg-12 admin-dashboard__section">
+            <div class="admin-dashboard__section__inner d-block">
+              <p class="admin-dashboard__section__small-number">
+                Timeline
+              </p>
+              <div
+                class="d-flex admin-dashboard__section__timeline"
+                *ngFor="let log of data.log; let i = index"
+              >
+                <span
+                  [ngClass]="
+                    i == 0 ? '' : 'admin-dashboard__section__timeline-border'
+                  "
+                ></span>
+                <div>
+                  <p class="admin-dashboard__section__normal">
+                    {{ log.description }}
+                  </p>
+                  <p class="admin-dashboard__section__subtitle">
+                    {{ log.comment }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xl-8 col-lg-12 admin-dashboard__section">
+            <div class="admin-dashboard__section__inner d-block">
+              <p class="admin-dashboard__section__small-number">
+                Details on Map
+              </p>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-12 admin-dashboard__section">
+            <div class="admin-dashboard__section__inner">
+              <p class="admin-dashboard__section__small-number">
+                Our Visitors
+              </p>
+              <canvas
+                class="admin-dashboard__section__chart"
+                baseChart
+                [data]="[34, 34, 45]"
+                chartType="doughnut"
+              >
+              </canvas>
+              <p class="admin-dashboard__section__mid-number text-center">
+                11785
+              </p>
+              <div class="d-flex justify-content-center">
+                <div class="admin-dashboard__section__active-project">
+                  <span></span>
+                  <p class="admin-dashboard__section__small-number">
+                    &nbsp;&nbsp;Active
+                  </p>
+                  <p class="admin-dashboard__section__subtitle">&nbsp;· 55%</p>
+                </div>
+
+                <div class="admin-dashboard__section__close-project">
+                  <span></span>
+                  <p class="admin-dashboard__section__small-number">
+                    &nbsp;&nbsp;Closed
+                  </p>
+                  <p class="admin-dashboard__section__subtitle">&nbsp;· 45%</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

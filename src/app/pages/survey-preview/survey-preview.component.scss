@@ -1,0 +1,55 @@
+ @import 'src/assets/style/variable';
+.preview {
+  height: auto;
+
+  survey {
+    overflow: auto;
+    width: 80%;
+  }
+}
+
+#preview {
+  max-height: 100vh;
+  overflow: auto;
+}
+
+.welcome {
+  min-height: 100vh;
+  background: $color-primary;
+  display: flex;
+  align-items: center;
+
+  &__wrapper {
+    width: 60%;
+    margin: auto;
+    text-align: center;
+  }
+  img {
+    width: 300px;
+    margin-bottom: 2rem;
+  }
+
+  svg {
+    margin-bottom: 1.5rem;
+  }
+  h1 {
+    color: white;
+    font-size: 3rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+  }
+
+  p {
+    color: white;
+  }
+
+  button {
+    margin-top: 2rem;
+    padding: 0.7rem 1.5rem 0.7rem 1.5rem;
+    border: 1px solid transparent;
+    border-radius: 50px;
+    color: $color-black;
+    background: white;
+    font-weight: 600;
+  }
+}

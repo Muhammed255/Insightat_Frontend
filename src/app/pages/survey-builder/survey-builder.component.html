@@ -1,0 +1,13 @@
+<ct-navigation-bar
+  type="survey"
+  [name]="project.name || ''"
+  pageName="build"
+></ct-navigation-bar>
+<div class="d-flex">
+  <ct-sidebar menuType="build"></ct-sidebar>
+  <survey-editor
+    (surveySaved)="onSurveySaved($event)"
+    style="width: 100%"
+    [json]="project.json"
+  ></survey-editor>
+</div>

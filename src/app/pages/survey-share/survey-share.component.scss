@@ -1,0 +1,121 @@
+ @import 'src/assets/style/variable';
+.share {
+  width: 80%;
+  margin: auto;
+  margin-top: 6rem;
+
+  h3 {
+    font-size: 1.5rem;
+    color: $color-black;
+    margin-bottom: 2rem;
+  }
+
+  &__weblink {
+    border: 1px solid $color-ultra-light-gray;
+    padding: 3rem 3rem 2rem 3rem;
+    cursor: pointer;
+
+    > h4 {
+      font-size: 1.125rem;
+      color: $color-black;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    > p {
+      font-size: 0.875rem;
+      color: $color-black;
+      margin-bottom: 1.5rem;
+    }
+
+    &--link {
+      width: 50%;
+      background-color: $color-ultra-light-gray;
+      border-radius: 50px;
+
+      > span {
+        padding: 12px;
+        font-size: 1rem;
+        font-weight: 500;
+      }
+    }
+
+    &--copy-button {
+      width: 15%;
+      background: $color-primary;
+      border: 1px solid $color-primary;
+      border-radius: 50px;
+
+      > span {
+        color: white;
+        font-size: 1rem;
+        font-weight: bold;
+      }
+    }
+
+    &--download-button {
+      width: 25%;
+      background: white;
+      border: 1px solid $color-primary;
+      border-radius: 50px;
+
+      > span {
+        color: $color-primary;
+        font-size: 1rem;
+        font-weight: bold;
+        margin-left: 5px;
+      }
+    }
+  }
+
+  &__feature {
+    border: 1px solid $color-ultra-light-gray;
+
+    h4 {
+      font-size: 1.125rem;
+      color: $color-black;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 0.875rem;
+      color: $color-black;
+      margin-bottom: 1.5rem;
+    }
+
+    button {
+      background: white;
+      border: 1px solid $color-primary;
+      border-radius: 50px;
+      margin-left: 25%;
+      padding: 10px 30px 10px 30px;
+
+      > span {
+        color: $color-primary;
+        font-size: 1rem;
+        font-weight: bold;
+      }
+    }
+
+    &--item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+
+      > div {
+        width: 60%;
+      }
+
+      &:first-child {
+        border-right: 1px solid $color-ultra-light-gray;
+      }
+    }
+  }
+
+  button:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+}

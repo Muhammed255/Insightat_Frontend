@@ -1,0 +1,323 @@
+ @import 'src/assets/style/variable';
+.navbar {
+  padding: 0px;
+
+  &-border {
+    box-shadow: 0 0.5px $color-dark-gray;
+  }
+}
+
+.navbar-brand {
+  width: 250px;
+  margin-right: 0;
+  text-align: center;
+  color: $color-primary;
+  font-size: 1.5rem;
+
+  &:hover,
+  &:focus {
+    color: $color-primary;
+  }
+}
+
+.admin-user {
+  &__wrapper {
+    width: 100%;
+    padding: 1.5rem 4rem 1.5rem calc(17vw + 2rem);
+  }
+  &__indi-wrapper {
+    width: 60%;
+    padding-top: 3rem;
+    padding-left: 6rem;
+    position: relative;
+  }
+
+  &__name {
+    cursor: pointer;
+  }
+
+  &__plan {
+    text-transform: capitalize;
+
+    p {
+      margin-bottom: 0;
+    }
+
+    &-advantage {
+      margin-right: 10px;
+      position: relative;
+      width: 16px;
+      height: 16px;
+      background: rgba(67, 113, 239, 0.3);
+      border-radius: 50%;
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 4px;
+        top: 4px;
+        width: 8px;
+        height: 8px;
+        background: $color-secondary;
+        border-radius: 50%;
+      }
+    }
+
+    &-premier {
+      margin-right: 10px;
+      position: relative;
+      width: 16px;
+      height: 16px;
+      background: rgba(39, 219, 170, 0.3);
+      border-radius: 50%;
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 4px;
+        top: 4px;
+        width: 8px;
+        height: 8px;
+        background: $color-success;
+        border-radius: 50%;
+      }
+    }
+
+    &-standard {
+      margin-right: 10px;
+      position: relative;
+      width: 16px;
+      height: 16px;
+      background: rgba(253, 215, 105, 0.3);
+      border-radius: 50%;
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 4px;
+        top: 4px;
+        width: 8px;
+        height: 8px;
+        background: $color-secondary;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  &__search {
+    position: relative;
+
+    i {
+      position: absolute;
+      right: 1rem;
+      top: 28%;
+      cursor: pointer;
+      color: $color-mid-gray;
+    }
+
+    input {
+      border-radius: 2rem;
+      padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+      border: 1px solid white;
+    }
+  }
+
+  &__btn__create {
+    background: $color-primary;
+    color: $color-white;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    font-size: 0.75rem;
+    border-radius: 2rem;
+    margin-left: 1rem;
+  }
+
+  &__actions {
+    width: 5%;
+    position: relative;
+
+    > p {
+      font-size: 20px;
+      margin-bottom: 0;
+      cursor: pointer;
+    }
+
+    &__items {
+      position: absolute;
+      top: 25px;
+      left: 35px;
+      z-index: 99;
+      background-color: white;
+      border: 1px solid white;
+      border-radius: 3px;
+      box-shadow: 0px 8px 20px rgba(14, 47, 79, 0.08);
+      list-style-type: none;
+      padding-top: 0.6rem;
+      padding-bottom: 0.6rem;
+
+      > li {
+        font-size: 14px;
+        padding: 0.6rem 3rem 0.6rem 1.5rem;
+        background-color: white;
+
+        &:hover {
+          background-color: rgba(63, 130, 199, 0.6);
+          transition: background-color 1000ms linear;
+          -webkit-transition: background-color 1000ms linear;
+          -ms-transition: background-color 1000ms linear;
+        }
+      }
+    }
+  }
+  &__text {
+    &__project {
+      color: $color-black;
+      font-size: 1.25rem;
+      margin-bottom: 0 !important;
+      line-height: unset;
+
+      span {
+        margin-left: 1rem;
+        font-size: 0.875rem;
+        color: $color-dark-gray;
+      }
+    }
+  }
+
+  &__pagination {
+    display: flex;
+    justify-content: flex-end;
+    background: white;
+    padding-top: 1rem;
+    border-radius: 5px;
+  }
+
+  .table {
+    margin-top: 2rem;
+    border-collapse: separate;
+    border-spacing: 0 0.3rem;
+    margin-bottom: 0;
+
+    thead {
+      th {
+        background-color: transparent;
+        color: $color-dark-gray;
+        border-bottom: none;
+      }
+    }
+
+    td,
+    th {
+      padding: 0.3rem 1.5rem;
+      border-top: none;
+    }
+
+    tbody {
+      td {
+        background-color: white;
+        border: 1px solid white;
+        vertical-align: middle;
+        color: $color-black;
+      }
+
+      td:first-child {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+      }
+
+      td:last-child {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+      }
+    }
+  }
+}
+
+.indi-user {
+  &__back {
+    color: $color-primary;
+    cursor: pointer;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+  }
+
+  &__header {
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid $color-light-gray;
+
+    &__name {
+      font-size: 1.5rem;
+      color: $color-black;
+      margin-bottom: 0rem;
+    }
+
+    &__image {
+      font-size: 6rem;
+      margin-right: 1rem;
+    }
+
+    &__plan {
+      font-size: 0.875rem;
+      color: $color-dark-gray;
+    }
+
+    &__loc-time {
+      i {
+        margin-right: 0.5rem;
+        color: $color-mid-gray;
+      }
+
+      p {
+        margin-right: 1rem;
+        font-size: 0.75rem;
+        color: $color-black;
+        margin-bottom: 0;
+      }
+    }
+
+    &__btn-send-email {
+      margin-right: 1rem;
+      background: $color-primary;
+      border: 1px solid $color-primary;
+      color: white;
+      font-size: 0.75rem;
+      padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+      border-radius: 50px;
+    }
+
+    &__btn-delete {
+      background: white;
+      border: 1px solid white;
+      color: $color-black;
+      font-size: 0.75rem;
+      padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+      border-radius: 50px;
+    }
+  }
+
+  &__body {
+    &__item {
+      width: 45%;
+
+      p {
+        color: $color-black;
+        font-size: 1rem;
+        font-weight: 500;
+        width: 45%;
+      }
+
+      span {
+        width: 55%;
+        color: $color-dark-gray;
+        font-size: 1rem;
+      }
+    }
+
+    &__title {
+      width: 100% !important;
+      margin-top: 2rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid $color-light-gray;
+    }
+  }
+}

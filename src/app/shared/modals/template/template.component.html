@@ -1,0 +1,64 @@
+<div class="modal-body d-flex">
+  <button type="button" class="close pull-right" aria-label="Close" (click)="onClose()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <div class="template__sidebar d-flex flex-column justify-content-between">
+    <div class="d-flex flex-column">
+      <div class="template__sidebar__back">
+        <div class="d-flex" (click)="onClose()">
+          <i class="fa fa-arrow-left"></i>
+          <span>Back</span>
+        </div>
+      </div>
+      <div class="template__sidebar__item-title">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <p>Most Popular</p>
+            <span> 15 </span>
+          </li>
+          <li class="list-group-item">
+            <p>General Business</p>
+            <span> 15 </span>
+          </li>
+          <li class="list-group-item">
+            <p>Community</p>
+            <span> 15 </span>
+          </li>
+          <li class="list-group-item">
+            <p>Customer Feedback</p>
+            <span> 15 </span>
+          </li>
+          <li class="list-group-item">
+            <p>Demographics</p>
+            <span> 15 </span>
+          </li>
+          <li class="list-group-item">
+            <p>Education</p>
+            <span> 15 </span>
+          </li>
+          <li class="list-group-item">
+            <p>Events</p>
+            <span> 15 </span>
+          </li>
+          <li class="list-group-item">
+            <p>Healthcare</p>
+            <span> 15 </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <button class="template__sidebar__btn" (click)="useThisTemplate()">
+      Use this Template
+    </button>
+  </div>
+
+  <div class="template__body row">
+    <div class="template__body__item col-md-3 col-lg-3">
+      <div (click)="onStartFromScratch()">
+        <i class="fa fa-plus"></i>
+        <p>Start From Scratch</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+@import 'src/assets/style/variable';
+
+.close {
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.btn {
+  &__next {
+    width: 100%;
+    color: white;
+    border-radius: 2rem;
+    background-color: $color-primary;
+    margin-top: 3rem;
+    margin-bottom: 0.5rem;
+    padding: 0.8rem 0 0.8rem 0;
+  }
+}
+
+.container {
+  padding: 1rem 3rem;
+
+  > input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid $color-dark-gray;
+  }
+
+  h1 {
+    color: $color-black;
+    font-size: 1.375rem;
+    margin-bottom: 3rem;
+  }
+
+  p {
+    color: $color-black;
+    font-size: 0.875rem;
+  }
+
+  button {
+    width: 50%;
+  }
+}

@@ -1,0 +1,190 @@
+<div class="admin-user">
+  <ct-navigation-bar type="dashboard"></ct-navigation-bar>
+
+  <div class="d-flex" style="background: #fafafa;">
+    <ct-sidebar menuType="admin" menuName="admin-users"></ct-sidebar>
+    <div class="admin-user__wrapper" *ngIf="dashboardVisible && data">
+      <div class="d-flex flex-column">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center">
+            <p class="admin-user__text__project">
+              Users <span> {{ data.length }} total </span>
+            </p>
+          </div>
+          <div class="d-flex">
+            <div class="admin-user__search">
+              <i class="fa fa-search" (click)="searchUser()"></i>
+              <input
+                type="text"
+                placeholder="Search"
+                (keyup.enter)="searchUser()"
+                [(ngModel)]="searchInput"
+              />
+            </div>
+            <button
+              class="btn admin-user__btn__create"
+              (click)="openNewProjectDlg()"
+            >
+              Add User
+            </button>
+          </div>
+        </div>
+
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>NAME</th>
+              <th>EMAIL</th>
+              <th>LAST SEEN</th>
+              <th>SIGN UP</th>
+              <th>PLAN</th>
+              <th>COUNTRY</th>
+              <th class="admin-user__actions"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="
+                let user of (data
+                  | paginate
+                    : {
+                        itemsPerPage: 10,
+                        currentPage: currentPage
+                      })
+              "
+            >
+              <td class="admin-user__name" (click)="showIndividualUser(user)">
+                {{ user.firstname + ' ' + user.lastname }}
+              </td>
+              <td class="project__type">
+                {{ user.email }}
+              </td>
+              <td>
+                Just Now
+              </td>
+              <td class="project__respondent">
+                {{ user.signUpComment }}
+              </td>
+              <td class="admin-user__plan">
+                <div class="d-flex">
+                  <p [ngClass]="getPlanClass(user.plan)"></p>
+                  <span>{{ getPlanText(user.plan) }}</span>
+                </div>
+              </td>
+              <td>
+                {{ user.country }}
+              </td>
+              <td
+                (click)="currentUser = user"
+                (mouseleave)="currentUser = null"
+                class="admin-user__actions"
+              >
+                <p>...</p>
+                <div
+                  *ngIf="user === currentUser"
+                  class="admin-user__actions__items"
+                >
+                  <li (click)="deleteUser(currentUser._id)">Delete</li>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <pagination-controls
+          class="admin-user__pagination"
+          (pageChange)="currentPage = $event"
+          autoHide="true"
+          responsive="true"
+          maxSize="100"
+        ></pagination-controls>
+      </div>
+    </div>
+
+    <div class="admin-user__indi-wrapper" *ngIf="!dashboardVisible">
+      <i
+        class="fa fa-arrow-left indi-user__back"
+        (click)="dashboardVisible = true"
+      ></i>
+      <div class="indi-user__header">
+        <div class="d-flex justify-content-between">
+          <div class="d-flex" style="width: 100%">
+            <i class="fa fa-user indi-user__header__image"></i>
+            <div style="width: 100%">
+              <h1 class="indi-user__header__name">
+                {{ currentUser.firstName + ' ' + currentUser.lastName }}
+              </h1>
+              <p class="indi-user__header__plan">
+                {{ getPlanText(currentUser.plan) }} User
+              </p>
+              <div
+                class="d-flex indi-user__header__loc-time align-items-center justify-content-between"
+              >
+                <div class="d-flex">
+                  <i class="fa fa-map-marker"></i>
+                  <p>{{ currentUser.country }}</p>
+
+                  <i class="fa fa-clock-o"></i>
+                  <p>Last Intrection Yesterday</p>
+                </div>
+                <div class="d-flex">
+                  <button class="indi-user__header__btn-send-email">
+                    Send Email
+                  </button>
+
+                  <button
+                    class="indi-user__header__btn-delete"
+                    (click)="deleteUser()"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="indi-user__body d-flex justify-content-between">
+        <div class="indi-user__body__item">
+          <p class="indi-user__body__title">User Information</p>
+          <div class="d-flex">
+            <p>First Name</p>
+            <span> {{ currentUser.firstName }}</span>
+          </div>
+          <div class="d-flex">
+            <p>Last Name</p>
+            <span> {{ currentUser.lastName }}</span>
+          </div>
+          <div class="d-flex">
+            <p>Email</p>
+            <span> {{ currentUser.email }}</span>
+          </div>
+          <div class="d-flex">
+            <p>Created At</p>
+            <span> {{ currentUser.createdAt }}</span>
+          </div>
+          <div class="d-flex">
+            <p>Plan</p>
+            <span>{{ getPlanText(currentUser.plan) }}</span>
+          </div>
+          <div class="d-flex">
+            <p>Country</p>
+            <span>{{ currentUser.country }}</span>
+          </div>
+        </div>
+
+        <div class="indi-user__body__item">
+          <p class="indi-user__body__title">Activity</p>
+          <div class="d-flex">
+            <p>Surveys Created</p>
+            <span> {{ currentUser.surveyCreated }}</span>
+          </div>
+          <div class="d-flex">
+            <p>Surveys Published</p>
+            <span> {{ currentUser.surveyPublished }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,76 @@
+<div class="login">
+  <div class="row">
+    <div class="col-lg-4 login__wrapper d-flex flex-column justify-content-between">
+      <h1 class="login__title" routerLink="/">Insightat</h1>
+
+      <div>
+        <div class="login__google">
+          <h1>Login</h1>
+          <p class="text-center">
+            Need a Insightat account?
+            <span routerLink="/signup">Create an account</span>
+          </p>
+          <button class="btn login__google__button" (click)="signInWithGoole()">
+            <img src="assets/image/icon_google.png" /><span>Log in with Google</span>
+          </button>
+          <div class="login__divider"></div>
+        </div>
+
+        <form (submit)="login()" #loginForm="ngForm" name="txtLoginForm" #loginForm>
+          <div class="login__input">
+            <label>Email</label>
+            <input
+              type="email"
+              placeholder="Your email address"
+              name="txtEmail"
+              [(ngModel)]="email"
+              required
+            />
+          </div>
+          <div class="login__input">
+            <label>Password</label>
+            <input
+              type="password"
+              placeholder="Your password"
+              name="txtPassword"
+              [(ngModel)]="password"
+              required
+            />
+          </div>
+
+          <div class="login__input justify-content-between d-flex flex-row">
+            <div class="d-flex align-items-center" (click)="rememberMe = !rememberMe">
+              <input
+                type="checkbox"
+                [checked]="rememberMe"
+                (change)="rememberMe = !rememberMe"
+              />
+              <label class="btn text_remember">Remember me</label>
+            </div>
+
+            <span class="btn" (click)="forgotPassword()">Forgot Password?</span>
+          </div>
+
+          <mat-progress-bar
+          *ngIf="isBusy"
+            style="max-width: 95%; margin: auto; margin-bottom: -48px;"
+            class="example-margin"
+            [color]="color"
+            [mode]="mode"
+            [value]="value"
+            [bufferValue]="bufferValue"
+          >
+          </mat-progress-bar>
+          <button class="btn login__button" type="submit">Log In</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="col-lg-8 login__background d-flex flex-column justify-content-end">
+      <div class="login__background__text">
+        <h1>Login to Insightat</h1>
+        <p>Welcome back! We missed you.</p>
+      </div>
+    </div>
+  </div>
+</div>

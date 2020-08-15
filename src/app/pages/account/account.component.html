@@ -1,0 +1,37 @@
+<div class="account">
+  <ct-navigation-bar type="dashboard"></ct-navigation-bar>
+
+  <div class="account__wrapper">
+    <div class="account__error" *ngIf="errorMessage">* {{ errorMessage }}</div>
+    <div class="account__item">
+      <label>Username</label>
+      <input type="text" [(ngModel)]="user.handle" />
+    </div>
+
+    <div class="account__item">
+      <label>Email</label>
+      <input type="text" [(ngModel)]="user.email" />
+    </div>
+
+    <div class="account__item">
+      <label>Phone number</label>
+      <input type="text" [(ngModel)]="user.phone" />
+    </div>
+
+    <div class="account__item">
+      <label>New Password</label>
+      <input type="password" [(ngModel)]="newPassword" />
+    </div>
+
+    <div class="account__item">
+      <label>Confirm Password</label>
+      <input type="password" [(ngModel)]="confirmPassword" />
+    </div>
+
+    <div class="d-flex justify-content-end">
+      <button class="account__submit" (click)="updateUser()">
+        Update
+      </button>
+    </div>
+  </div>
+</div>

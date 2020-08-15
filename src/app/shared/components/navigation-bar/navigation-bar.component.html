@@ -1,0 +1,185 @@
+<nav class="navbar navbar-expand-lg navbar-light" *ngIf="type == 'home'">
+  <a class="navbar-brand" routerLink="/">Insightat</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    (click)="isCollapsed = !isCollapsed"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div
+    class="collapse navbar-collapse justify-content-center"
+    id="navbarSupportedContent"
+    [ngbCollapse]="isCollapsed"
+  >
+    <ul class="navbar-nav">
+      <li [ngClass]="pageName == 'solutions' ? 'nav-item active' : 'nav-item'">
+        <a class="nav-link" routerLink="/solutions">Solutions</a>
+      </li>
+
+      <li [ngClass]="pageName == 'how-it-works' ? 'nav-item active' : 'nav-item'">
+        <a class="nav-link" routerLink="/how-it-works">How It Works</a>
+      </li>
+
+      <li [ngClass]="pageName == 'pricing' ? 'nav-item active' : 'nav-item'">
+        <a class="nav-link" routerLink="/pricing">Pricing</a>
+      </li>
+
+      <li [ngClass]="pageName == 'templates' ? 'nav-item active' : 'nav-item'">
+        <a class="nav-link" routerLink="/templates">Templates</a>
+      </li>
+
+      <li [ngClass]="pageName == 'faq' ? 'nav-item active' : 'nav-item'">
+        <a class="nav-link" routerLink="/faq">FAQ</a>
+      </li>
+
+      <li [ngClass]="pageName == 'contact-us' ? 'nav-item active' : 'nav-item'">
+        <a class="nav-link" routerLink="/contact-us">Contact Us</a>
+      </li>
+
+      <li class="nav-item nav__login" (click)="redirect('./login')">
+        <span> Log In </span>
+      </li>
+
+      <li class="nav-item nav__signup" (click)="redirect('./signup')">
+        Sign Up
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<nav
+  class="navbar navbar-expand-lg navbar-light navbar-border"
+  *ngIf="type == 'dashboard'"
+>
+  <a class="navbar-brand" routerLink="/">Insightat</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    (click)="isCollapsed = !isCollapsed"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="navbar-survey__right">
+    <div
+      class="d-flex align-items-center navbar-survey__menu-dashboard"
+      (click)="dropdownVisible = !dropdownVisible"
+    >
+      <div
+        class="navbar-survey__dashboard d-flex justify-content-center align-items-center"
+      >
+        <span>{{ localstorageService.getUserFirstName()[0] }} </span>
+      </div>
+      <i class="fa fa-caret-down"></i>
+
+      <ul
+        class="navbar-survey__dropdown"
+        *ngIf="dropdownVisible"
+        (click)="dropdownVisible = false"
+      >
+        <li routerLink="/account">My Account</li>
+        <li routerLink="/profile">My Profile</li>
+        <li>Contacts</li>
+        <li routerLink="/contact-us">Help</li>
+        <li class="divider" (click)="logOut()">Log out</li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<nav
+  class="navbar navbar-expand-lg navbar-light navbar-border navbar-survey"
+  *ngIf="type == 'survey'"
+>
+  <div class="d-flex align-items-center navbar-survey__left">
+    <a class="navbar-survey__brand" routerLink="/dashboard">Insightat</a>
+    <img
+      src="/assets/image/icon-home.svg"
+      routerLink="/dashboard"
+      style="cursor: pointer"
+    />
+    <fa name="angle-right" style="color: white"></fa>
+    <p>{{ name }}</p>
+  </div>
+  <button
+    class="navbar-toggler"
+    type="button"
+    (click)="isCollapsed = !isCollapsed"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div
+    class="collapse navbar-collapse justify-content-center"
+    id="navbarSupportedContent"
+    [ngbCollapse]="isCollapsed"
+  >
+    <ul class="navbar-nav">
+      <li [ngClass]="pageName == 'build' ? 'nav-item active' : 'nav-item'">
+        <a class="nav-link" [routerLink]="['/project/' + projectId + '/build']">
+          Build
+        </a>
+      </li>
+
+      <li [ngClass]="pageName == 'design' ? 'nav-item active' : 'nav-item'">
+        <a class="nav-link" [routerLink]="['/project/' + projectId + '/design']">
+          Design
+        </a>
+      </li>
+
+      <li [ngClass]="pageName == 'share' ? 'nav-item active' : 'nav-item'">
+        <a class="nav-link" [routerLink]="['/project/' + projectId + '/share']">
+          Share
+        </a>
+      </li>
+
+      <li [ngClass]="pageName == 'analyze' ? 'nav-item active' : 'nav-item'">
+        <a class="nav-link" [routerLink]="['/project/' + projectId + '/analyze']"
+          >Results</a
+        >
+      </li>
+    </ul>
+  </div>
+
+  <div class="d-flex navbar-survey__right">
+    <button class="navbar-survey__btn-preview" [routerLink]="['/projects/' + projectId]">
+      Preview
+    </button>
+    <div
+      class="d-flex align-items-center navbar-survey__menu"
+      (click)="dropdownVisible = !dropdownVisible"
+    >
+      <div
+        class="navbar-survey__profile d-flex justify-content-center align-items-center"
+      >
+        <span>{{ localstorageService.getUserFirstName()[0] }} </span>
+      </div>
+      <i class="fa fa-caret-down"></i>
+
+      <ul class="navbar-survey__dropdown" *ngIf="dropdownVisible" (click)="dropdownVisible = false">
+        <li routerLink="/account">My Account</li>
+        <li routerLink="/profile">My Profile</li>
+        <li>Contacts</li>
+        <li routerLink="/contact-us">Help</li>
+        <li class="divider" (click)="logOut()">Log out</li>
+      </ul>
+    </div>
+  </div>
+</nav>

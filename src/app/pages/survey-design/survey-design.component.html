@@ -1,0 +1,150 @@
+<ct-navigation-bar
+  type="survey"
+  pageName="design"
+  [name]="project.name"
+></ct-navigation-bar>
+<div class="d-flex" [style.backgroundColor]="project.backgroundColor">
+  <ct-sidebar menuType="design"></ct-sidebar>
+  <div class="sidebar__options">
+    <div class="sidebar__options-header">
+      customize
+    </div>
+    <div class="sidebar__options-body">
+      <div class="sidebar__options-layout"></div>
+
+      <div class="sidebar__options-colors">
+        <div class="sidebar__options-colors--item">
+          <span class="sidebar__options-colors--item-triangle"></span>
+          <input
+            [(colorPicker)]="project.mainColor"
+            [style.background]="project.mainColor"
+            [style.border]="
+              project.mainColor != '#ffffff'
+                ? '1px solid ' + project.mainColor
+                : '1px solid #deded3'
+            "
+            [style.borderRadius]="'5px'"
+          />
+          <p>
+            Main Color <br />
+            <span>Welcome, Thank you, Buttons and Hover</span>
+          </p>
+        </div>
+
+        <div class="sidebar__options-colors--item">
+          <span class="sidebar__options-colors--item-triangle"></span>
+          <input
+            [(colorPicker)]="project.mainTextColor"
+            [style.background]="project.mainTextColor"
+            [style.border]="
+              project.mainTextColor != '#ffffff'
+                ? '1px solid ' + project.mainTextColor
+                : '1px solid #deded3'
+            "
+            [style.borderRadius]="'5px'"
+          />
+          <p>
+            Main Text <br />
+            <span>Welcome, Thank you, Buttons Text Color</span>
+          </p>
+        </div>
+
+        <div class="sidebar__options-colors--item">
+          <span class="sidebar__options-colors--item-triangle"></span>
+          <input
+            [(colorPicker)]="project.questionColor"
+            [style.background]="project.questionColor"
+            [style.border]="
+              project.questionColor != '#ffffff'
+                ? '1px solid ' + project.questionColor
+                : '1px solid #deded3'
+            "
+            [style.borderRadius]="'5px'"
+          />
+          <h3>
+            Question Color
+          </h3>
+        </div>
+
+        <div class="sidebar__options-colors--item">
+          <span class="sidebar__options-colors--item-triangle"></span>
+          <input
+            [(colorPicker)]="project.answerColor"
+            [style.background]="project.answerColor"
+            [style.border]="
+              project.answerColor != '#ffffff'
+                ? '1px solid ' + project.answerColor
+                : '1px solid #deded3'
+            "
+            [style.borderRadius]="'5px'"
+          />
+          <h3>
+            Answer Color
+          </h3>
+        </div>
+
+        <div class="sidebar__options-colors--item">
+          <span class="sidebar__options-colors--item-triangle"></span>
+          <input
+            [(colorPicker)]="project.pageColor"
+            [style.background]="project.pageColor"
+            [style.border]="
+              project.pageColor != '#ffffff'
+                ? '1px solid ' + project.pageColor
+                : '1px solid #deded3'
+            "
+            [style.borderRadius]="'5px'"
+          />
+          <h3>
+            Page Color
+          </h3>
+        </div>
+
+        <div class="sidebar__options-colors--item">
+          <span class="sidebar__options-colors--item-triangle"></span>
+          <input
+            [(colorPicker)]="project.backgroundColor"
+            [style.background]="project.backgroundColor"
+            [style.border]="
+              project.backgroundColor != '#ffffff'
+                ? '1px solid ' + project.backgroundColor
+                : '1px solid #deded3'
+            "
+            [style.borderRadius]="'5px'"
+          />
+          <h3>
+            Background
+          </h3>
+        </div>
+
+        <div class="sidebar__options-background">
+          <h1>Welcome Screen Logo</h1>
+
+          <div class="sidebar__options__logo" (click)="onUploadFile()">
+            <i *ngIf="!project.logoImgUrl" class="fa fa-plus" style="color: #b4b4bf"></i>
+            <img *ngIf="project.logoImgUrl" [src]="project.logoImgUrl" />
+          </div>
+          <input
+            #fileInput
+            hidden
+            type="file"
+            (change)="valueChange($event)"
+            accept="image/gif, image/jpg, image/jpeg, image/png"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <survey
+    style="transform: translateX(150px)"
+    [json]="project.json"
+    [mainColor]="project.mainColor"
+    [mainTextColor]="project.mainTextColor"
+    [questionColor]="project.questionColor"
+    [answerColor]="project.answerColor"
+    [pageColor]="project.pageColor"
+    [progressBar]="project.progressBar"
+    (submitSurvey)="sendData($event)"
+    class="d-flex justify-content-center align-items-center"
+  ></survey>
+</div>

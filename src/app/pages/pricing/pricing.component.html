@@ -1,0 +1,152 @@
+<ct-navigation-bar type="home" pageName="pricing"></ct-navigation-bar>
+<div class="pricing container">
+  <div class="pricing__title">
+    <h3>Choose a plan that works for you</h3>
+    <div class="d-flex justify-content-center">
+      <p class="pricing__subtitle">Just need the basic plan?</p>
+      <span class="pricing__subtitle" routerLink="/signup"
+        >Sign up for a free account</span
+      >
+    </div>
+  </div>
+
+  <div class="pricing__plans row">
+    <div
+      class="pricing__plans-item col-xl-4 col-12"
+      [ngStyle]="
+        currentPlan == 'standard'
+          ? { 'background-color': '#f8f8fa' }
+          : { 'background-color': '#fff' }
+      "
+    >
+      <div
+        class="pricing__plans-item__content"
+        (click)="currentPlan = 'standard'"
+      >
+        <div class="pricing__plans-item__content__header">
+          <h4>standard</h4>
+          <div class="d-flex">
+            <p class="pricing__cash-symbol">€</p>
+            <p class="pricing__amount">39</p>
+            <p class="pricing__period">/ mon</p>
+          </div>
+        </div>
+        <div class="pricing__plans-item__content__body">
+          <div class="d-flex" *ngFor="let item of planStandard">
+            <img src="/assets/image/tick.png" />
+            <p class="item">{{ item }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="pricing__plans-item__select-plan">
+        <button
+          [ngStyle]="
+            currentPlan == 'standard'
+              ? { 'background-color': '#fa7268', 'border-color': '#fa7268' }
+              : { 'background-color': '#3f82c7', 'border-color': '#3f82c7' }
+          "
+        >
+          Select plan
+        </button>
+      </div>
+    </div>
+
+    <div
+      class="pricing__plans-item col-xl-4 col-12"
+      [ngStyle]="
+        currentPlan == 'advantage'
+          ? { 'background-color': '#f8f8fa' }
+          : { 'background-color': '#fff' }
+      "
+    >
+      <div
+        class="pricing__plans-item__content"
+        (click)="currentPlan = 'advantage'"
+      >
+        <div class="pricing__plans-item__content__header">
+          <div class="d-flex justify-content-between align-items-center">
+            <h4>advantage</h4>
+            <h5>Best Value</h5>
+          </div>
+          <div class="d-flex">
+            <p class="pricing__cash-symbol">€</p>
+            <p class="pricing__amount">456</p>
+            <p class="pricing__period">/ year</p>
+          </div>
+        </div>
+        <div class="pricing__plans-item__content__body">
+          <div class="d-flex" *ngFor="let item of planAdvantage; let i = index">
+            <img
+              [src]="
+                i < planAdvantage.length - 4
+                  ? '/assets/image/tick.png'
+                  : '/assets/image/plus.png'
+              "
+            />
+            <p class="item">{{ item }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="pricing__plans-item__select-plan">
+        <button
+          [ngStyle]="
+            currentPlan == 'advantage'
+              ? { 'background-color': '#fa7268', 'border-color': '#fa7268' }
+              : { 'background-color': '#3f82c7', 'border-color': '#3f82c7' }
+          "
+        >
+          Select plan
+        </button>
+      </div>
+    </div>
+
+    <div
+      class="pricing__plans-item col-xl-4 col-12"
+      [ngStyle]="
+        currentPlan == 'premier'
+          ? { 'background-color': '#f8f8fa' }
+          : { 'background-color': '#fff' }
+      "
+    >
+      <div
+        class="pricing__plans-item__content"
+        (click)="currentPlan = 'premier'"
+      >
+        <div class="pricing__plans-item__content__header">
+          <h4>premier</h4>
+          <div class="d-flex">
+            <p class="pricing__cash-symbol">€</p>
+            <p class="pricing__amount">1,118</p>
+            <p class="pricing__period">/ year</p>
+          </div>
+        </div>
+        <div class="pricing__plans-item__content__body">
+          <div class="d-flex" *ngFor="let item of planPremier; let i = index">
+            <img
+              [src]="
+                i < planPremier.length - 4
+                  ? '/assets/image/tick.png'
+                  : '/assets/image/plus.png'
+              "
+            />
+            <p class="item">{{ item }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="pricing__plans-item__select-plan">
+        <button
+          [ngStyle]="
+            currentPlan == 'premier'
+              ? { 'background-color': '#fa7268', 'border-color': '#fa7268' }
+              : { 'background-color': '#3f82c7', 'border-color': '#3f82c7' }
+          "
+        >
+          Select plan
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="pricing__footer">
+  <ct-footer></ct-footer>
+</div>

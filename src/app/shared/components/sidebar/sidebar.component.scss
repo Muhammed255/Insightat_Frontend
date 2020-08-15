@@ -1,0 +1,148 @@
+ @import 'src/assets/style/variable';
+.app {
+  position: relative;
+}
+#sidenav {
+  position: fixed;
+  width: 50px;
+  height: calc(100vh - 47px);
+  top: 46px;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+  background: white;
+  border: 1px solid $color-light-gray;
+}
+#sidenav.open {
+  left: -300px;
+}
+#sidenav .logo {
+  width: 100%;
+  padding: 20px 50px;
+  background: white;
+  display: block;
+}
+#sidenav .logo a {
+  color: #dadada;
+  font-size: 30px;
+}
+#sidenav .logo a.nav-icon {
+  display: none;
+}
+#sidenav .menu {
+  position: static;
+}
+#sidenav .menu ul {
+  list-style: none;
+  background: white;
+  padding: 10% 0;
+  margin: 0;
+}
+#sidenav .menu ul li {
+  margin: 30px 0;
+  padding: 5px;
+  cursor: pointer;
+}
+#sidenav .menu ul li.active {
+  border-left: solid 2px $color-primary;
+  cursor: pointer;
+}
+.sidebar {
+  &__input {
+    width: 80%;
+    margin-bottom: 0.5rem;
+  }
+
+  &__options {
+    position: fixed;
+    z-index: 99;
+    background: white;
+    left: 49px;
+    top: 46px;
+    width: 251px;
+    height: calc(100vh - 47px);
+    border: 1px solid $color-light-gray;
+
+    &-header {
+      text-transform: uppercase;
+      font-weight: 400;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #dedee3;
+    }
+
+    &-body {
+      padding: 12px;
+    }
+
+    &-item {
+      padding: 10px;
+      padding-top: 20px;
+      margin-bottom: 0;
+      color: $color-black;
+      font-size: 12px;
+    }
+  }
+
+  &__admin {
+    li {
+      text-align: left;
+      margin: 15px 0 !important;
+      padding-left: 1.5rem !important;
+
+      span {
+        margin-left: 10px;
+        font-size: 0.875rem;
+      }
+    }
+  }
+}
+
+input[type='checkbox'].ios8-switch {
+  position: absolute;
+  margin: 8px 0 0 16px;
+}
+input[type='checkbox'].ios8-switch + label {
+  position: relative;
+  padding: 5px 0 0 50px;
+  line-height: 2em;
+}
+input[type='checkbox'].ios8-switch + label:before {
+  cursor: pointer;
+  content: '';
+  position: absolute;
+  display: block;
+  left: 0;
+  top: 0;
+  width: 50px; /* x*5 */
+  height: 26px; /* x*3 */
+  border-radius: 18px; /* x*2 */
+  background: gray;
+  border: 1px solid white;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+input[type='checkbox'].ios8-switch + label:after {
+  content: '';
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  left: 4px;
+  top: 4px;
+  width: 18px; /* x*3 */
+  height: 18px; /* x*3 */
+  border-radius: 18px; /* x*2 */
+  background: white;
+  border: 1px solid white;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+input[type='checkbox'].ios8-switch + label:hover:after {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+input[type='checkbox'].ios8-switch:checked + label:after {
+  margin-left: 23px;
+}
+input[type='checkbox'].ios8-switch:checked + label:before {
+  background: #31e2b8;
+}

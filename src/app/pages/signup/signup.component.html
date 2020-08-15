@@ -1,0 +1,113 @@
+<div class="signup">
+  <div class="row">
+    <div class="col-lg-4 signup__wrapper d-flex flex-column justify-content-between">
+      <h1 class="signup__title" routerLink="/">Insightat</h1>
+
+      <div class="signup__google">
+        <h1>Create a FREE account</h1>
+        <p class="text-center">
+          Already have an account? <span routerLink="/login">Log In</span>
+        </p>
+        <button class="btn signup__google__button" (click)="signInWithGoole()">
+          <img src="assets/image/icon_google.png" /><span>Sign up with Google</span>
+        </button>
+
+        <div class="signup__divider"></div>
+      </div>
+
+      <div>
+        <form (submit)="signup()" novalidate [formGroup]="registerForm">
+          <div class="signup__input">
+            <label>First Name *</label>
+            <input
+              [ngClass]="errors['firstname'] ? 'signup__input_error' : ''"
+              type="text"
+              placeholder="Type your first name here..."
+              formControlName="firstname"
+            />
+          </div>
+          <div class="signup__input">
+            <label>Last Name *</label>
+            <input
+              [ngClass]="errors['lastname'] ? 'signup__input_error' : ''"
+              type="text"
+              placeholder="Type your last name here..."
+              formControlName="lastname"
+            />
+          </div>
+          <div class="signup__input">
+            <label>Username *</label>
+            <input
+              [ngClass]="errors['username'] ? 'signup__input_error' : ''"
+              type="text"
+              placeholder="Type your username here..."
+              formControlName="username"
+            />
+          </div>
+
+          <div class="signup__input">
+            <label>Email *</label>
+            <input
+              [ngClass]="errors['email'] ? 'signup__input_error' : ''"
+              type="email"
+              placeholder="Type your email here..."
+              formControlName="email"
+            />
+          </div>
+
+          <div class="signup__input">
+            <label>Password *</label>
+            <input
+              [ngClass]="errors['password'] ? 'signup__input_error' : ''"
+              type="password"
+              placeholder="Type your password here..."
+              formControlName="password"
+            />
+          </div>
+
+          <div class="signup__input">
+            <label>Country *</label>
+            <select
+              id="country"
+              [ngClass]="errors['country'] ? 'signup__input_error' : ''"
+              placeholder="Type your country here..."
+              formControlName="country"
+            >
+              <option *ngFor="let ctName of country_list" [ngValue]="ctName">
+                {{ ctName }}
+              </option>
+            </select>
+          </div>
+
+          <div class="signup__input">
+            <label>Phone number (Optional)</label>
+            <input
+              type="text"
+              placeholder="Type your number here..."
+              formControlName="phone"
+            />
+          </div>
+
+          <button class="btn signup__button" type="submit">
+            Create Account
+          </button>
+
+          <p class="signup__agreement">
+            By clicking 'CREATE ACCOUNT' or signing up, you agree to the
+            <a href="/terms-conditions">Terms of Use</a> and
+            <a href="/privacy-policy">Privacy Policy</a>.
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <div class="col-lg-8 signup__background d-flex flex-column justify-content-end">
+      <div class="signup__background__text">
+        <h1>Register For Free Trial</h1>
+        <p>
+          Welcome to Insightat! Start your free trial now, no <br />credit card required.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

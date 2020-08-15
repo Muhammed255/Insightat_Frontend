@@ -1,0 +1,250 @@
+ @import 'src/assets/style/variable';
+
+.dashboard {
+  margin-top: 2rem;
+  width: 80%;
+
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+    background-color: #fafafa;
+    min-height: 100vh;
+  }
+
+  .table {
+    margin-top: 2rem;
+    border-collapse: separate;
+    border-spacing: 0 0.3rem;
+
+    thead {
+      th {
+        background-color: transparent;
+        color: $color-dark-gray;
+        border-bottom: none;
+      }
+    }
+
+    td,
+    th {
+      padding: 0.8rem 1.5rem;
+      border-top: none;
+    }
+
+    tbody {
+      td {
+        background-color: white;
+        border: 1px solid white;
+        vertical-align: middle;
+      }
+
+      td:first-child {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+      }
+
+      td:last-child {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+      }
+    }
+  }
+
+  &__btn__create {
+    background: $color-primary;
+    color: $color-white;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    font-size: 0.75rem;
+    border-radius: 2rem;
+  }
+
+  &__text {
+    &__project {
+      color: $color-black;
+      font-size: 1.25rem;
+      margin-bottom: 0 !important;
+      line-height: unset;
+
+      span {
+        margin-left: 1rem;
+        font-size: 0.875rem;
+        color: $color-dark-gray;
+      }
+    }
+
+    &__sortby {
+      margin-bottom: 0 !important;
+      line-height: unset;
+      margin-left: 5rem;
+      font-size: 0.875rem;
+      color: $color-dark-gray;
+
+      span {
+        width: 100px;
+      }
+
+      .custom-select {
+        border: none;
+        background: #fafafa
+          url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E")
+          no-repeat right 0.75rem center;
+        background-size: 8px 10px;
+      }
+    }
+  }
+
+  &__empty {
+    width: 36% !important;
+
+    &__box {
+      border: 1px dashed $color-dark-gray;
+      width: 19%;
+      height: 10vw;
+      margin-bottom: 2rem;
+    }
+
+    &__help {
+      margin-top: 2rem;
+      font-size: 0.875rem;
+      color: $color-dark-gray;
+    }
+
+    h1 {
+      font-size: 1.875rem;
+      font-weight: 400;
+      color: $color-dark-gray;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+  }
+
+  .project {
+    &__name {
+      color: $color-black;
+      font-size: 1rem;
+      cursor: pointer;
+
+      > span {
+        font-size: 0.75rem;
+        color: $color-dark-gray;
+      }
+    }
+
+    &__type {
+      font-size: 0.875rem;
+      color: $color-black;
+    }
+
+    &__respondent {
+      font-size: 1rem;
+      color: $color-black;
+    }
+
+    &__analysis {
+      cursor: pointer;
+    }
+
+    &__actions {
+      position: relative;
+
+      > p {
+        font-size: 20px;
+        margin-bottom: 0;
+      }
+
+      &__items {
+        position: absolute;
+        top: 25px;
+        left: 55px;
+        z-index: 99;
+        background-color: white;
+        border: 1px solid white;
+        border-radius: 3px;
+        box-shadow: 0px 8px 20px rgba(14, 47, 79, 0.08);
+        list-style-type: none;
+        padding-top: 0.6rem;
+        padding-bottom: 0.6rem;
+
+        > li {
+          font-size: 14px;
+          padding: 0.6rem 3rem 0.6rem 1.5rem;
+          background-color: white;
+
+          &:hover {
+            background-color: rgba(63, 130, 199, 0.6);
+            transition: background-color 1000ms linear;
+            -webkit-transition: background-color 1000ms linear;
+            -ms-transition: background-color 1000ms linear;
+          }
+        }
+      }
+    }
+
+    &__status {
+      font-size: 0.875rem;
+      text-transform: capitalize;
+
+      p {
+        width: 20px;
+        height: 20px;
+        position: relative;
+        border-radius: 50%;
+        margin-bottom: 0;
+
+        &::after {
+          content: '';
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          top: 5px;
+          left: 5px;
+          border-radius: 50%;
+        }
+      }
+
+      span {
+        margin-left: 5px;
+      }
+
+      &__new {
+        color: $color-primary;
+
+        p {
+          background: rgba(67, 113, 249, 0.3);
+
+          &::after {
+            background: $color-primary;
+          }
+        }
+      }
+
+      &__active {
+        color: $color-success;
+
+        p {
+          background: rgba(39, 219, 170, 0.3);
+
+          &::after {
+            background: $color-success;
+          }
+        }
+      }
+
+      &__closed {
+        color: $color-mid-gray;
+
+        p {
+          background: rgba(222, 222, 227, 0.3);
+
+          &::after {
+            background: $color-mid-gray;
+          }
+        }
+      }
+    }
+
+    &__questions {
+      font-size: 1rem;
+      color: $color-black;
+    }
+  }
+}

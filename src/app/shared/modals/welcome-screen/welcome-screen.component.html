@@ -1,0 +1,26 @@
+<div class="modal-body">
+  <button
+    type="button"
+    class="close pull-right"
+    aria-label="Close"
+    (click)="onClose()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+
+  <div class="container">
+    <h1>{{ dialogTitle }}</h1>
+
+    <p>Title</p>
+    <input type="text" [(ngModel)]="screenTitle" />
+
+    <p>Description</p>
+    <textarea rows="5" type="text" [(ngModel)]="titleDescription"></textarea>
+
+    <div class="d-flex align-items-center justify-content-center">
+      <button class="btn btn__next" type="submit" (click)="onNext()">
+        Save
+      </button>
+    </div>
+  </div>
+</div>

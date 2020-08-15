@@ -1,0 +1,151 @@
+ @import 'src/assets/style/variable';
+
+.signup {
+  &__title {
+    color: $color-primary;
+    font-size: 2rem;
+    text-align: center;
+    cursor: pointer;
+  }
+  &__background {
+    background-image: url('/assets/image/signup.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    &__text {
+      color: $color-black;
+      padding: 1rem 0 5rem 3rem;
+    }
+  }
+
+  &__wrapper {
+    padding: 4rem;
+    min-height: 100vh;
+  }
+
+  &__agreement {
+    font-size: 0.875rem;
+    color: $color-dark-gray;
+    text-align: center;
+
+    a {
+      color: $color-secondary;
+      text-decoration: underline;
+      text-decoration-color: $color-secondary;
+    }
+  }
+
+  &__divider {
+    border-bottom: 1px solid $color-mid-gray;
+    width: 100%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+
+    &::after {
+      content: 'or';
+      color: #333340;
+      position: absolute;
+      right: 44%;
+      background-color: white;
+      top: -12px;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+
+  &__google {
+    color: $color-black;
+
+    h1 {
+      font-size: 1.625rem;
+      text-align: center;
+      font-weight: 400;
+    }
+
+    p {
+      font-size: 0.9375rem;
+      color: #707070;
+    }
+
+    span {
+      cursor: pointer;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: $color-secondary;
+    }
+
+    &__button {
+      width: 100%;
+      border-radius: 2rem;
+      border: 1px solid $color-mid-gray;
+      background-color: white;
+      padding: 0.8rem 0 0.8rem 0;
+
+      > span {
+        color: $color-black;
+        font-weight: 600;
+        padding-left: 1rem;
+      }
+    }
+  }
+
+  &__input {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+
+    &_error {
+      border-color: #d8000c !important;
+    }
+
+    label {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: #707070;
+      margin-bottom: 0 !important;
+    }
+
+    span {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: $color-secondary;
+    }
+
+    input::placeholder {
+      color: $color-light-gray;
+    }
+
+    input {
+      border: none;
+      border-bottom: 1px solid $color-light-gray;
+    }
+
+    select {
+      border: none;
+      border-bottom: 1px solid $color-light-gray;
+    }
+
+    .text_remember {
+      margin-bottom: 0;
+      margin-left: 0.5rem;
+      color: $color-black;
+      font-weight: 500;
+    }
+  }
+
+  &__button {
+    width: 100%;
+    color: white;
+    border-radius: 2rem;
+    background-color: $color-primary;
+    margin-top: 3rem;
+    margin-bottom: 0.5rem;
+    padding: 0.8rem 0 0.8rem 0;
+  }
+
+  .row {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+}
