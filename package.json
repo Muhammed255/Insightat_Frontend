@@ -58,7 +58,7 @@
     "material-icons": "^0.3.1",
     "ng2-charts": "^1.6.0",
     "ng2-currency-mask": "^5.3.1",
-    "ngx-bootstrap": "^1.9.3",
+    "ngx-bootstrap": "^5.6.1",
     "ngx-clipboard": "^11.1.9",
     "ngx-color-picker": "^7.3.1",
     "ngx-pagination": "^3.2.1",
