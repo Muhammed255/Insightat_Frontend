@@ -106,6 +106,12 @@ let config = new AuthServiceConfig([
   },
 ]);
 
+//	update 1
+export function provideConfig() {
+  return config;
+}
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -176,7 +182,8 @@ let config = new AuthServiceConfig([
     ]),
     SimpleNotificationsModule.forRoot(),
     CurrencyMaskModule,
-    SocialLoginModule.initialize(config),
+    //SocialLoginModule.initialize(config),
+    SocialLoginModule,
     ColorPickerModule,
     QRCodeModule,
     ClipboardModule,
@@ -201,6 +208,10 @@ let config = new AuthServiceConfig([
     NgxPermissionsService,
     BsModalService,
     UtilsService,
+    {
+    	provide: AuthServiceConfig,
+    	useFactory: provideConfig
+    }
   ],
   entryComponents: [
     WelcomeScreenComponent,
