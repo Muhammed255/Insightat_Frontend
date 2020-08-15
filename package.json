@@ -28,7 +28,7 @@
     "@angular/platform-server": "^7.2.15",
     "@angular/router": "^7.2.15",
     "@auth0/angular-jwt": "^2.0.0",
-    "@ng-bootstrap/ng-bootstrap": "^2.0.0-alpha.0",
+    "@ng-bootstrap/ng-bootstrap": "^3.3.1",
     "@ng-bootstrap/schematics": "^2.0.0-alpha.1",
     "@ng-select/ng-select": "^2.1.0",
     "@ngrx/effects": "^5.2.0",
